@@ -1,0 +1,13 @@
+---
+layout: base.njk
+---
+<header id="project-header" class="difference">
+  <div class="page-title">
+    <h2 class="caption"><a class="quiet difference-color" href="#">{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</a></h2>
+    {% if when %}<h2 class="caption"><a class="quiet difference-color" href="#">{{ when }}</a></h2>{% elseif date %}<h2 class="caption"><a class="quiet difference-color" href="#">{{ date | yearOnly }}</a></h2>{% endif %}
+  </div>
+  <h1 class="site-title caption"><a class="quiet difference-color" href="/">{{ meta.title }}</a></h1>
+</header>
+<main id="project-content" class="grid">
+  {{ content | safe }}
+</main>

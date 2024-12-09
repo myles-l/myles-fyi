@@ -1,0 +1,32 @@
+{
+  "title": "Myles Larson",
+  "description": "Designer and visual artist specialized in digital products. This website is an incomplete archive of his visual work, with no preference for medium and in no particular order.",
+  "url": "https://myles.fyi/",
+  "language": "en",
+  "author": {
+		"name": "Myles Larson",
+		"email": "info@myles.fyi"
+  },
+  "social": [
+    {
+      "name": "Instagram",
+      "url": "https://instagram.com/myleslarson"
+    },
+    {
+      "name": "Bluesky",
+      "url": "https://bsky.app/profile/myles.fyi"
+    },    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/myleslarson"
+    }
+  ],
+  "copyright": "2024 Myles Larson Design LLC",
+  "version": "2.0",
+  "updated": "27 Nov 2024",
+  "nav": [
+    "Product Design",
+    "Visual Design",
+    "Painting",
+    "Photography"
+  ]
+}
