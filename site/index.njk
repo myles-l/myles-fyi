@@ -2,26 +2,28 @@
 layout: base.njk
 ---
 <header id="index-header" class="match-info difference">
-  <h1 id="index-site-title" class="site-title caption" style="visibility: hidden;"><a class="quiet difference-color" href="/">{{ meta.title }}</a></h1>
-  <nav>
-    <ul id="nav-filters" class="closed shift">
-      <li id="open-filters" class="body filter-control"><a class="quiet" href="javascript:showFilters();">
-        <img class="nav-icon" src="/assets/menu.svg" alt="menu icon" height="16" width="16" />
-      </a></li>
-      <li id="close-filters" class="body filter-control"><a class="quiet" href="javascript:hideFilters();">
-        <img class="nav-icon" src="/assets/close.svg" alt="X icon" height="16" width="16" />
-      </a></li>
-      {% for filter in meta.nav %}
-        <li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
-      {% endfor %}
-    </ul>
-  </nav>
+  <h1 id="index-site-title" class="site-title caption" style="visibility: hidden;"><a class="quiet difference-color shadow" href="/">{{ meta.title }}</a></h1>
+  <menu id="nav-filters" class="shift">
+    {% for filter in meta.nav %}
+      <li id="filter-{{ filter | slugify }}" class="filter caption"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
+    {% endfor %}
+  </menu>
+  <button id="show-filters-button" class="filters-button"></button>
 </header>
+
+<dialog id="filter-menu" class="difference" popover>
+  <button id="hide-filters-button" class="filters-button"></button>
+  <menu id="" class="">
+    {% for filter in meta.nav %}
+    <li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
+    {% endfor %}
+  </menu>
+</dialog>
 
 <main id="index-content" class="grid">
   <article id="info" class="post paragraph span-all">
     <p>Myles Larson is a designer and visual artist specialized in digital products. He's based in New York and currently working on {% link "https://signal.org", "Signal" %}.</p>
-    <p>This website is an incomplete archive of his visual work, with no preference for medium and in no particular order.<span id="show-more-info" class="caption indent-left"><a class="quiet" href="javascript:toggleFilter('info');">More info</a></span></p>
+    <p>This website is an incomplete archive of his visual work, with no preference for medium and in no particular order.<span id="show-more-info" class="caption indent-left no-wrap"><a class="quiet" href="javascript:toggleFilter('info');">More info</a></span></p>
     <div id="more-info" class="hidden">
       <p>Prior to Signal, Myles was adjunct faculty at {% link "https://artcenter.edu", "ArtCenter College of Design" %} teaching Interaction Design, an independent designer working with a variety clients, and at Facebook creating their first design system.</p>
       <p>Résumé and portfolio available upon request.</p>
@@ -60,6 +62,8 @@ layout: base.njk
 </main>
 
 <script>
+  const showFiltersButton = document.querySelector("#show-filters-button");
+  const hideFiltersButton = document.querySelector("#hide-filters-button");
   let url = new URL(window.location.href);
   let params;
   let compactNav;
@@ -72,7 +76,7 @@ layout: base.njk
     showOnScroll();
   };
 
-  window.addEventListener('popstate', function(event) {
+  window.addEventListener('popstate', () => {
     params = url.searchParams.get('filter');
     if (params) {
       toggleFilter(params);
@@ -83,7 +87,15 @@ layout: base.njk
     showOnScroll();
   };
 
-  window.addEventListener('resize', function(event) {
+  window.addEventListener('resize', () => {
     showOnScroll();
+  });
+
+  showFiltersButton.addEventListener("click", () => {
+    showFilters();
+  });
+
+  hideFiltersButton.addEventListener("click", () => {
+    hideFilters();
   });
 </script>

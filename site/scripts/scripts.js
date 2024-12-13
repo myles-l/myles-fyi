@@ -25,13 +25,11 @@ function copyToClipboard(address) {
 }
 
 function showFilters() {
-  document.querySelector('#nav-filters').classList.remove('closed');
-  document.querySelector('#nav-filters').classList.add('open');
+  document.querySelector("#filter-menu").showModal();
 }
 
 function hideFilters() {
-  document.querySelector('#nav-filters').classList.add('closed');
-  document.querySelector('#nav-filters').classList.remove('open');
+  document.querySelector("#filter-menu").close();
 }
 
 function toggleFilter(tag) {
