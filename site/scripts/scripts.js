@@ -5,10 +5,12 @@ function showOnScroll() {
 
   if ((scrollHeight <= 0) || (document.documentElement.scrollTop >= scrollHeight)) {
     title.style.visibility = "visible";
-    document.querySelector('#nav-filters').classList.remove('shift');
+    document.querySelector('#show-filters-button').classList.remove('shift');
+    document.querySelector('#hide-filters-button').classList.remove('shift');
   } else {
     title.style.visibility = "hidden";
-    document.querySelector('#nav-filters').classList.add('shift');
+    document.querySelector('#show-filters-button').classList.add('shift');
+    document.querySelector('#hide-filters-button').classList.add('shift');
   }
 }
 
@@ -88,6 +90,7 @@ function applyFilter(tag) {
   if (currentFilter) {
     document.querySelector('title').innerHTML = "Myles Larson : "+currentFilter;
   }
+  document.querySelector("#reset-filters").style.visibility = "visible";
   hideFilters();
   showOnScroll();
 }
@@ -125,6 +128,7 @@ function resetFilters() {
   if (showMoreInfo.classList.contains('hidden')) {
     showMoreInfo.classList.remove('hidden');
   }
+  document.querySelector("#reset-filters").style.visibility = "hidden";
   hideFilters();
   showOnScroll();
 }

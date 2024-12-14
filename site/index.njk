@@ -17,6 +17,7 @@ layout: base.njk
     {% for filter in meta.nav %}
     <li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
     {% endfor %}
+    <li id="reset-filters" style="visibility: hidden;"><a class="quiet difference-color caption" href="javascript:resetFilters();">Clear</a></li>
   </menu>
 </dialog>
 

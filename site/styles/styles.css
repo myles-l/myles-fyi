@@ -282,21 +282,31 @@ hr {
   padding: 0;
   width: var(--body-leading);
   height: var(--body-leading);
+  &:active {
+    border: none;
+    outline: none;
+  }
 }
 
 #show-filters-button {
   display: none;
-  position: fixed;
-  top: var(--margin-top);
-  right: var(--margin);
-  background: transparent url('/assets/menu.svg') no-repeat center right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent url('/assets/menu.svg') no-repeat top 3px right;
+  &.shift {
+    background-position: center right;
+  }
 }
 
 #hide-filters-button {
   position: absolute;
   top: 0;
   right: 0;
-  background: transparent url('/assets/close.svg') no-repeat center right;
+  background: transparent url('/assets/close.svg') no-repeat top 3px right;
+  &.shift {
+    background-position: center right;
+  }
 }
 
 #filter-menu {
