@@ -1,4 +1,6 @@
 const Image = require("@11ty/eleventy-img");
+const markdownIt = require("markdown-it");
+const markdownItContainer = require("markdown-it-container");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addNunjucksFilter("niceDate", function(arr) {
@@ -101,7 +103,7 @@ module.exports = function(eleventyConfig) {
 	});
 
   eleventyConfig.addShortcode("text", function() {
-		return "<div class='paragraph span-all'>\n";
+		return "<div class='paragraph'>\n";
 	});
 
   eleventyConfig.addShortcode("endtext", function() {
@@ -111,6 +113,22 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addShortcode("caption", function(text) {
     return `<p class="caption">${text}</p>`;
 	});
+
+	eleventyConfig.setLibrary("md", markdownIt({
+		html: true,
+		breaks: true,
+    typographer: true,
+	}));
+  
+  eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(markdownItContainer,'p',{  
+    render: function (tokens, idx) {
+      if (tokens[idx].nesting === 1) {
+        return '<div class="paragraph">\n';
+      } else {
+        return '</div>\n';
+      }
+    }
+  }));
 
   eleventyConfig.addWatchTarget("site/work/**/*.md");
   eleventyConfig.addPassthroughCopy('site/styles/*.css');

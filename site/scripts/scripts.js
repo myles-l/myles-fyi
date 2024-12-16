@@ -1,25 +1,29 @@
-function showOnScroll() {
-  let scrollHeight = 0;
-  scrollHeight += document.querySelector("#info").scrollHeight;
-  let title = document.querySelector("#index-site-title");
+function onScroll() {
+  const siteTitle = document.querySelector("#index-site-title");
+  const infoSection = document.querySelector("#info");
+  let scrollPosition = document.documentElement.scrollTop;
+  let trigger = 0;
+  trigger += infoSection.scrollHeight;
 
-  if ((scrollHeight <= 0) || (document.documentElement.scrollTop >= scrollHeight)) {
-    title.style.visibility = "visible";
-    document.querySelector('#show-filters-button').classList.remove('shift');
-    document.querySelector('#hide-filters-button').classList.remove('shift');
+  if ((trigger <= 0) || (scrollPosition >= trigger)) {
+    siteTitle.style.visibility = "visible";
+    showFiltersButton.classList.remove('shift');
+    hideFiltersButton.classList.remove('shift');
   } else {
-    title.style.visibility = "hidden";
-    document.querySelector('#show-filters-button').classList.add('shift');
-    document.querySelector('#hide-filters-button').classList.add('shift');
+    siteTitle.style.visibility = "hidden";
+    showFiltersButton.classList.add('shift');
+    hideFiltersButton.classList.add('shift');
   }
 }
 
 function copyToClipboard(address) {
   navigator.clipboard.writeText(address);
-  let tooltip = document.querySelector("#mail-link .tooltip");
-  let text = document.querySelector("#mail-link .text");
+  
+  const tooltip = document.querySelector("#mail-link .tooltip");
+  const text = document.querySelector("#mail-link .text");
   tooltip.innerHTML = "copied to clipboard";
   text.innerHTML = "copied to clipboard";
+
   setTimeout(function(){
     tooltip.innerHTML = `copy ${address}`;
     text.innerHTML = address;
@@ -92,7 +96,7 @@ function applyFilter(tag) {
   }
   document.querySelector("#reset-filters").style.visibility = "visible";
   hideFilters();
-  showOnScroll();
+  onScroll();
 }
 
 function resetFilters() {
@@ -130,7 +134,7 @@ function resetFilters() {
   }
   document.querySelector("#reset-filters").style.visibility = "hidden";
   hideFilters();
-  showOnScroll();
+  onScroll();
 }
 
 function showInfo() {
@@ -142,5 +146,5 @@ function showInfo() {
   document.querySelector('title').innerHTML = "Myles Larson : Info"
   document.querySelector("#more-info").classList.remove('hidden');
   document.querySelector("#show-more-info").classList.add('hidden');
-  showOnScroll();
+  onScroll();
 }

@@ -6,7 +6,7 @@
   font-weight: normal;
   font-style: normal;
   font-feature-settings: "ss01";
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -15,7 +15,7 @@
   font-weight: normal;
   font-style: italic;
   font-feature-settings: "ss01";
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -24,7 +24,7 @@
   font-weight: bold;
   font-style: normal;
   font-feature-settings: "ss01";
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -33,7 +33,7 @@
   font-weight: bold;
   font-style: italic;
   font-feature-settings: "ss01";
-  font-display: swap;
+  font-display: block;
 }
 
 :root {
@@ -91,25 +91,25 @@ body {
 /* TYPOGRAPHY ------------------------------------------------------------------- */
 
 p,
-li {
+li,
+h2 {
   font-size: var(--body-size);
   line-height: var(--body-leading);
   letter-spacing: var(--body-tracking);
   font-weight: normal;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1 {
   font-size: var(--body-size);
   line-height: var(--body-leading);
   letter-spacing: var(--body-tracking);
   font-weight: bold;
 }
 
+h3,
+h4,
+h5,
+h6,
 figcaption,
 .caption {
   font-size: var(--caption-size);
@@ -128,16 +128,48 @@ strong {
   font-weight: bold;
 }
 
+ul {
+  padding: 0;
+  & li {
+    list-style-type: none;
+    &:before {
+      content: "– ";
+    }
+  }
+}
+
+hr {
+  border: none;
+  border-bottom: 1.5px solid var(--color-figure);
+  margin: var(--row-gap) 0;
+}
+
+/* Spacing -------------------------- */
+
 .paragraph {
+  padding-right: var(--text-margin-right);
   & p {
     margin-bottom: var(--body-paragraph-break);
-    margin-right: var(--text-margin-right);
-    max-width: var(--body-width);
   }
-  & .caption {
+  & p.caption {
     margin-bottom: var(--caption-paragraph-break);
   }
-  & p:last-of-type {
+  & h1,
+  & h2 {
+    margin-top: calc(var(--body-paragraph-break) * 2);
+    margin-bottom: var(--body-paragraph-break);
+  }
+  & h3 {
+    margin-top: calc(var(--body-paragraph-break) * 2);
+    margin-bottom: var(--caption-paragraph-break);
+  }
+  & * {
+    max-width: var(--body-width);
+  }
+  & *:first-child {
+    margin-top: 0;
+  }
+  & *:last-child {
     margin-bottom: 0;
   }
 }
@@ -175,51 +207,6 @@ a {
   }
 }
 
-/* HELPERS ---------------------------------------------------------------------- */
-
-.indent-left {
-  margin-left: var(--indent);
-}
-
-.indent-right {
-  margin-right: var(--indent);
-}
-
-.hidden {
-  display: none;
-}
-
-.invisible {
-  visibility: hidden;
-}
-
-.visible {
-  visibility: visible;
-}
-
-.difference {
-  mix-blend-mode: difference;
-}
-
-.difference-color,
-.difference-color:hover,
-.difference-color:active {
-  color: var(--color-figure-difference);
-}
-
-.outline img {
-  border: 0.5px solid var(--color-outline);
-}
-
-.shadow {
-  text-shadow: 0px 0px 30px rgba(255,255,255,0.6);
-}
-
-.no-wrap {
-  white-space: nowrap;
-}
-
-
 /* LAYOUT ----------------------------------------------------------------------- */
 
 header {
@@ -256,12 +243,6 @@ picture img {
   height: auto;
 }
 
-hr {
-  border: none;
-  border-bottom: 0.5px solid var(--color-outline);
-  margin: var(--row-gap) 0;
-}
-
 
 /* Index --------------------------- */
 
@@ -277,7 +258,7 @@ hr {
   }
 }
 
-.filters-button {
+.menu-button {
   border: none;
   padding: 0;
   width: var(--body-leading);
@@ -334,6 +315,10 @@ hr {
   }
 }
 
+button:focus {
+  outline: transparent;
+}
+
 .filter.off a {
   text-decoration: line-through;
   text-decoration-color: var(--color-figure-difference);
@@ -374,14 +359,16 @@ hr {
 
 #info {
   margin-top: calc((var(--row-gap) + var(--caption-leading)) * -1);
+  & p:nth-child(2) {
+    margin-bottom: 0;
+  }
 }
 
 #more-info {
   margin-top: var(--body-paragraph-break);
-}
-
-#more-info p:nth-last-child(2) {
-  margin-bottom: var(--caption-paragraph-break);
+  & p:nth-last-child(2) {
+    margin-bottom: var(--caption-paragraph-break);
+  }
 }
 
 
@@ -399,6 +386,51 @@ hr {
 
 figcaption {
   margin-top: var(--text-img-gap);
+}
+
+
+/* OVERRIDES -------------------------------------------------------------------- */
+
+.indent-left {
+  margin-left: var(--indent);
+}
+
+.indent-right {
+  margin-right: var(--indent);
+}
+
+.hidden {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.difference {
+  mix-blend-mode: difference;
+}
+
+.difference-color,
+.difference-color:hover,
+.difference-color:active {
+  color: var(--color-figure-difference);
+}
+
+.outline img {
+  border: 0.5px solid var(--color-outline);
+}
+
+.shadow {
+  text-shadow: 0px 0px 30px rgba(255,255,255,0.6);
+}
+
+.no-wrap {
+  white-space: nowrap;
 }
 
 

@@ -2,17 +2,17 @@
 layout: base.njk
 ---
 <header id="index-header" class="match-info difference">
-  <h1 id="index-site-title" class="site-title caption" style="visibility: hidden;"><a class="quiet difference-color shadow" href="/">{{ meta.title }}</a></h1>
+  <h1 id="index-site-title" class="site-title caption" style="visibility: hidden;"><a class="quiet difference-color" href="/">{{ meta.title }}</a></h1>
   <menu id="nav-filters" class="shift">
     {% for filter in meta.nav %}
       <li id="filter-{{ filter | slugify }}" class="filter caption"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
     {% endfor %}
   </menu>
-  <button id="show-filters-button" class="filters-button"></button>
+  <button id="show-filters-button" class="menu-button"></button>
 </header>
 
-<dialog id="filter-menu" class="difference" popover>
-  <button id="hide-filters-button" class="filters-button"></button>
+<dialog id="filter-menu" class="difference">
+  <button id="hide-filters-button" class="menu-button"></button>
   <menu id="" class="">
     {% for filter in meta.nav %}
     <li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
@@ -22,7 +22,7 @@ layout: base.njk
 </dialog>
 
 <main id="index-content" class="grid">
-  <article id="info" class="post paragraph span-all">
+  <article id="info" class="post paragraph">
     <p>Myles Larson is a designer and visual artist specialized in digital products. He's based in New York and currently working on {% link "https://signal.org", "Signal" %}.</p>
     <p>This website is an incomplete archive of his visual work, with no preference for medium and in no particular order.<span id="show-more-info" class="caption indent-left no-wrap"><a class="quiet" href="javascript:toggleFilter('info');">More info</a></span></p>
     <div id="more-info" class="hidden">
@@ -39,8 +39,8 @@ layout: base.njk
         </p>
       {% endif %}
       <p>Site info
-        {% if meta.version %}<br>v{{ meta.version }}{% endif %}
         {% if meta.updated %}<br>Updated {{ meta.updated }}{% endif %}
+        <br>{% link "/colophon/", "Colophon" %}
       </p>
       <p id="hide-more-info" class="caption"><a class="quiet" href="javascript:toggleFilter('info');">Less info</a></p>
     </div>
@@ -67,14 +67,24 @@ layout: base.njk
   const hideFiltersButton = document.querySelector("#hide-filters-button");
   let url = new URL(window.location.href);
   let params;
-  let compactNav;
+  let compactNav;{{ filter | slugify }}
+
+  const tags = [
+    {% for filter in meta.nav %}
+    {
+      name: "{{ filter }}",
+      tag: "{{ filter | slugify }}"
+    },
+    {% endfor %}
+  ];
+  let currentTag = -1;
 
   window.onload = (event) => {
     params = url.searchParams.get('filter');
     if (params) {
       toggleFilter(params);
     }
-    showOnScroll();
+    onScroll();
   };
 
   window.addEventListener('popstate', () => {
@@ -85,11 +95,11 @@ layout: base.njk
   });
 
   window.onscroll = function() {
-    showOnScroll();
+    onScroll();
   };
 
   window.addEventListener('resize', () => {
-    showOnScroll();
+    onScroll();
   });
 
   showFiltersButton.addEventListener("click", () => {
