@@ -6,21 +6,21 @@ function onScroll() {
   trigger += infoSection.scrollHeight;
 
   if ((trigger <= 0) || (scrollPosition >= trigger)) {
-    siteTitle.style.visibility = "visible";
+    siteTitle.style.opacity = 1;
     showFiltersButton.classList.remove('shift');
     hideFiltersButton.classList.remove('shift');
   } else {
-    siteTitle.style.visibility = "hidden";
+    siteTitle.style.opacity = 0;
     showFiltersButton.classList.add('shift');
     hideFiltersButton.classList.add('shift');
   }
 }
 
 function copyToClipboard(address) {
-  navigator.clipboard.writeText(address);
-  
   const tooltip = document.querySelector("#mail-link .tooltip");
   const text = document.querySelector("#mail-link .text");
+
+  navigator.clipboard.writeText(address);  
   tooltip.innerHTML = "copied to clipboard";
   text.innerHTML = "copied to clipboard";
 
@@ -30,25 +30,25 @@ function copyToClipboard(address) {
   }, 2000);
 }
 
-function showFilters() {
-  document.querySelector("#filter-menu").showModal();
-}
-
-function hideFilters() {
-  document.querySelector("#filter-menu").close();
+function showFilterMenu(show) {
+  if (show == true) {
+    document.querySelector("#filter-menu").showModal();
+  } else {
+    document.querySelector("#filter-menu").close();
+  }
 }
 
 function toggleFilter(tag) {
   if (tag == 'info') {
-    if (document.querySelector('#more-info').classList.contains('hidden')) {
-      showInfo();
+    const moreInfo = document.querySelector('#more-info');
+    if (moreInfo.classList.contains("hidden")) {
+      showMoreInfo(true);
     } else {
       resetFilters();
     }
   } else {
-    let selectedFilter = document.querySelector('#filter-'+tag);
-    let selectedFilterIsOn = selectedFilter.classList.contains('on');
-    if (selectedFilterIsOn) {
+    const selectedFilter = document.querySelector('#filter-'+tag);
+    if (selectedFilter.classList.contains('on')) {
       resetFilters();
     } else {
       applyFilter(tag);
@@ -57,14 +57,9 @@ function toggleFilter(tag) {
 }
 
 function applyFilter(tag) {
-  params = url.searchParams.get('filter');
-  if (params != tag){
-    url.searchParams.set('filter', tag);
-    window.history.pushState(null, '', url.toString());
-  }
-
-  let filters = document.querySelectorAll('.filter');
-  let posts = document.querySelectorAll('.post');
+  const filters = document.querySelectorAll('.filter');
+  const posts = document.querySelectorAll('.post');
+  const title = document.querySelector('title');
 
   for (let i in filters) {
     if (filters[i].classList) {
@@ -92,22 +87,19 @@ function applyFilter(tag) {
   }
   let currentFilter = document.querySelector('.filter.on a').innerHTML;
   if (currentFilter) {
-    document.querySelector('title').innerHTML = "Myles Larson : "+currentFilter;
+    title.innerHTML = "Myles Larson : " + currentFilter;
   }
   document.querySelector("#reset-filters").style.visibility = "visible";
-  hideFilters();
+  showFilterMenu(false);
   onScroll();
 }
 
 function resetFilters() {
-  url.searchParams.delete('filter');
-  window.history.pushState(null, '', url.toString());
-  document.querySelector('title').innerHTML = "Myles Larson";
+  removeURLFilter();
 
-  let filters = document.querySelectorAll('.filter');
-  let posts = document.querySelectorAll('.post');
-  let moreInfo = document.querySelector("#more-info");
-  let showMoreInfo = document.querySelector("#show-more-info");
+  const title = document.querySelector('title');
+  const filters = document.querySelectorAll('.filter');
+  const posts = document.querySelectorAll('.post');
 
   for (let i in filters) {
     if (filters[i].classList) {
@@ -126,25 +118,50 @@ function resetFilters() {
       }
     }
   }
-  if (!(moreInfo.classList.contains('hidden'))) {
-    moreInfo.classList.add('hidden');
-  }
-  if (showMoreInfo.classList.contains('hidden')) {
-    showMoreInfo.classList.remove('hidden');
-  }
+  showMoreInfo(false);
+  title.innerHTML = "Myles Larson";
   document.querySelector("#reset-filters").style.visibility = "hidden";
-  hideFilters();
+  showFilterMenu(false);
   onScroll();
 }
 
-function showInfo() {
-  params = url.searchParams.get('filter');
-  if (params != 'info'){
-    url.searchParams.set('filter', 'info');
+function showMoreInfo(show) {
+  const moreInfo = document.querySelector("#more-info");
+  const moreInfoButton = document.querySelector("#show-more-info");
+  const title = document.querySelector('title');
+
+  if (show == true) {
+    updateURLFilter("info");
+    title.innerHTML = "Myles Larson : Info";
+    moreInfo.classList.remove("hidden");
+    moreInfoButton.classList.add("hidden");
+  } else {
+    removeURLFilter();
+    title.innerHTML = "Myles Larson";
+    moreInfo.classList.add("hidden");
+    moreInfoButton.classList.remove("hidden");
+  }
+
+  onScroll();
+}
+
+function getURLFilter() {
+  const url = new URL(window.location.href);
+  const params = url.searchParams.get('filter');
+  return params;
+}
+
+function updateURLFilter(filter) {
+  const url = new URL(window.location.href);
+  const params = url.searchParams.get('filter');
+  if (params != filter){
+    url.searchParams.set('filter', filter);
     window.history.pushState(null, '', url.toString());
   }
-  document.querySelector('title').innerHTML = "Myles Larson : Info"
-  document.querySelector("#more-info").classList.remove('hidden');
-  document.querySelector("#show-more-info").classList.add('hidden');
-  onScroll();
+}
+
+function removeURLFilter() {
+  const url = new URL(window.location.href);
+  url.searchParams.delete('filter');
+  window.history.pushState(null, '', url.toString());
 }

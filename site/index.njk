@@ -2,7 +2,7 @@
 layout: base.njk
 ---
 <header id="index-header" class="match-info difference">
-  <h1 id="index-site-title" class="site-title caption" style="visibility: hidden;"><a class="quiet difference-color" href="/">{{ meta.title }}</a></h1>
+  <h1 id="index-site-title" class="site-title caption" style="opacity: 0;"><a class="quiet difference-color" href="/">{{ meta.title }}</a></h1>
   <menu id="nav-filters" class="shift">
     {% for filter in meta.nav %}
       <li id="filter-{{ filter | slugify }}" class="filter caption"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
@@ -40,7 +40,7 @@ layout: base.njk
       {% endif %}
       <p>Site info
         {% if meta.updated %}<br>Updated {{ meta.updated }}{% endif %}
-        <br>{% link "/colophon/", "Colophon" %}
+        <br><a href="/colophon/">Colophon</a>
       </p>
       <p id="hide-more-info" class="caption"><a class="quiet" href="javascript:toggleFilter('info');">Less info</a></p>
     </div>
@@ -65,9 +65,7 @@ layout: base.njk
 <script>
   const showFiltersButton = document.querySelector("#show-filters-button");
   const hideFiltersButton = document.querySelector("#hide-filters-button");
-  let url = new URL(window.location.href);
-  let params;
-  let compactNav;{{ filter | slugify }}
+  let compactNav;
 
   const tags = [
     {% for filter in meta.nav %}
@@ -80,7 +78,7 @@ layout: base.njk
   let currentTag = -1;
 
   window.onload = (event) => {
-    params = url.searchParams.get('filter');
+    let params = getURLFilter();
     if (params) {
       toggleFilter(params);
     }
@@ -88,7 +86,7 @@ layout: base.njk
   };
 
   window.addEventListener('popstate', () => {
-    params = url.searchParams.get('filter');
+    let params = getURLFilter();
     if (params) {
       toggleFilter(params);
     }
@@ -103,10 +101,10 @@ layout: base.njk
   });
 
   showFiltersButton.addEventListener("click", () => {
-    showFilters();
+    showFilterMenu(true);
   });
 
   hideFiltersButton.addEventListener("click", () => {
-    hideFilters();
+    showFilterMenu(false);
   });
 </script>

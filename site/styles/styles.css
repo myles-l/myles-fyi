@@ -261,11 +261,14 @@ picture img {
 .menu-button {
   border: none;
   padding: 0;
-  width: var(--body-leading);
+  width: 16px;
   height: var(--body-leading);
   &:active {
     border: none;
     outline: none;
+  }
+  &:focus {
+    outline: transparent;
   }
 }
 
@@ -275,6 +278,7 @@ picture img {
   top: 0;
   right: 0;
   background: transparent url('/assets/menu.svg') no-repeat top 3px right;
+  transition: background-position 80ms ease-in-out;
   &.shift {
     background-position: center right;
   }
@@ -285,6 +289,7 @@ picture img {
   top: 0;
   right: 0;
   background: transparent url('/assets/close.svg') no-repeat top 3px right;
+  transition: background-position 80ms ease-in-out;
   &.shift {
     background-position: center right;
   }
@@ -315,9 +320,10 @@ picture img {
   }
 }
 
-button:focus {
-  outline: transparent;
+#index-site-title {
+  transition: opacity 80ms ease-in-out;
 }
+
 
 .filter.off a {
   text-decoration: line-through;
@@ -334,18 +340,6 @@ button:focus {
 
 .filter {
   display: block;
-}
-
-.filter-control img {
-  vertical-align: top;
-  margin-top: 3px;
-  margin-bottom: 0;
-}
-
-.shift .filter-control img {
-  vertical-align: middle;
-  margin-top: 0;
-  margin-bottom: 3px;
 }
 
 .project.post picture {
@@ -365,7 +359,11 @@ button:focus {
 }
 
 #more-info {
-  margin-top: var(--body-paragraph-break);
+  transition: opacity 200ms ease-in-out;
+  transition: height 8s ease-in-out;
+  & p:first-child {
+    margin-top: var(--body-paragraph-break);
+  }
   & p:nth-last-child(2) {
     margin-bottom: var(--caption-paragraph-break);
   }
@@ -505,6 +503,8 @@ figcaption {
     grid-column: 3 / span 10;
   }
 }
+
+/* ANIMATIONS ------------------------------------------------------------------- */
 
 
 /* MEDIA QUERIES ---------------------------------------------------------------- */
