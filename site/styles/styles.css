@@ -217,6 +217,8 @@ header {
   flex-flow: row nowrap;
   justify-content: space-between;
   column-gap: var(--indent);
+  overflow: visible;
+  z-index: 999;
 }
 
 main {
@@ -258,72 +260,35 @@ picture img {
   }
 }
 
-.menu-button {
-  border: none;
-  padding: 0;
+#filter-menu-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
   width: 16px;
   height: var(--body-leading);
-  &:active {
-    border: none;
-    outline: none;
-  }
-  &:focus {
-    outline: transparent;
-  }
-}
-
-#show-filters-button {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: transparent url('/assets/menu.svg') no-repeat top 3px right;
-  transition: background-position 80ms ease-in-out;
-  &.shift {
-    background-position: center right;
-  }
-}
-
-#hide-filters-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: transparent url('/assets/close.svg') no-repeat top 3px right;
-  transition: background-position 80ms ease-in-out;
-  &.shift {
-    background-position: center right;
-  }
-}
-
-#filter-menu {
-  position: fixed;
-  top: var(--margin-top);
-  right: var(--margin);
-  left: auto;
   padding: 0;
   border: none;
-  background: none;
-  overflow: visible;
-  & menu {
-    display: flex;
-    flex-flow: column nowrap;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    margin-top: var(--body-leading);
+  color: rgba(0,0,0,0); /* Make the text transparent, still visible to screen-readers */
+  background: transparent url('/assets/menu.svg') no-repeat top 3px right;
+  transition: background-position 80ms ease-in-out;
+  cursor: pointer;
+  &.shift {
+    background-position: center right;
   }
-  & li {
-    text-align: right;
-  }
-  &::backdrop {
-    backdrop-filter:blur(5px);
+  &.x {
+    background-image: url('/assets/close.svg');
   }
 }
 
-#index-site-title {
+#current-filter {
+  display: none;
+  margin-right: calc(var(--indent) + 16px);
+}
+
+/* #index-site-title {
   transition: opacity 80ms ease-in-out;
-}
-
+} */
 
 .filter.off a {
   text-decoration: line-through;
@@ -340,6 +305,9 @@ picture img {
 
 .filter {
   display: block;
+  font-size: var(--caption-size);
+  line-height: var(--caption-leading);
+  letter-spacing: var(--caption-tracking);
 }
 
 .project.post picture {
@@ -431,6 +399,9 @@ figcaption {
   white-space: nowrap;
 }
 
+.blur {
+  filter: blur(3px) hue-rotate(15deg);
+}
 
 /* GRID ------------------------------------------------------------------------- */
 
@@ -541,9 +512,24 @@ figcaption {
 
 @media screen and (max-width: 72rem) {
   #nav-filters {
-    display: none;
+    visibility: hidden;
+    flex-flow: column nowrap;
+    position: absolute;
+    top: var(--body-leading);
+    right: 0;
+    &.open {
+      visibility: visible;
+    }
+    & .filter {
+      font-size: var(--body-size);
+      line-height: var(--body-leading);
+      letter-spacing: var(--body-tracking);
+    }
   }
-  #show-filters-button {
+  #filter-menu-button {
+    display: block;
+  }
+  #current-filter.on {
     display: block;
   }
 }

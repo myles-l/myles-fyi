@@ -1,20 +1,24 @@
+// SCROLL
+
 function onScroll() {
   const siteTitle = document.querySelector("#index-site-title");
   const infoSection = document.querySelector("#info");
+  const filterMenuButton = document.querySelector("#filter-menu-button");
   let scrollPosition = document.documentElement.scrollTop;
   let trigger = 0;
   trigger += infoSection.scrollHeight;
 
   if ((trigger <= 0) || (scrollPosition >= trigger)) {
     siteTitle.style.opacity = 1;
-    showFiltersButton.classList.remove('shift');
-    hideFiltersButton.classList.remove('shift');
+    filterMenuButton.classList.remove('shift');
   } else {
     siteTitle.style.opacity = 0;
-    showFiltersButton.classList.add('shift');
-    hideFiltersButton.classList.add('shift');
+    filterMenuButton.classList.add('shift');
   }
 }
+
+
+// CLIPBOARD
 
 function copyToClipboard(address) {
   const tooltip = document.querySelector("#mail-link .tooltip");
@@ -30,13 +34,51 @@ function copyToClipboard(address) {
   }, 2000);
 }
 
-function showFilterMenu(show) {
-  if (show == true) {
-    document.querySelector("#filter-menu").showModal();
+
+// FILTER MENU
+
+function filterMenuButton() {
+  const isFilterOn = document.querySelector("#current-filter").classList.contains("on");
+  const isMenuOpen = document.querySelector("#nav-filters").classList.contains("open");
+
+  if (isFilterOn) {
+    resetFilters();
+  } else if (isMenuOpen) {
+    hideFilterMenu();
   } else {
-    document.querySelector("#filter-menu").close();
+    showFilterMenu();
   }
 }
+
+function showFilterMenu() {
+  const menuButton = document.querySelector("#filter-menu-button");
+  const filterMenu = document.querySelector("#nav-filters");
+  const main = document.querySelector("main");
+  const footer = document.querySelector("footer");
+
+  menuButton.classList.add("x");
+  filterMenu.classList.add("open");
+  main.classList.add("blur");
+  footer.classList.add("blur");
+}
+
+function hideFilterMenu() {
+  const menuButton = document.querySelector("#filter-menu-button");
+  const filterMenu = document.querySelector("#nav-filters");
+  const main = document.querySelector("main");
+  const footer = document.querySelector("footer");
+  const isFilterOn = document.querySelector("#current-filter").classList.contains("on");
+
+  if (!isFilterOn) {
+    menuButton.classList.remove("x");
+  }
+  filterMenu.classList.remove("open");
+  main.classList.remove("blur");
+  footer.classList.remove("blur");
+}
+
+
+// FILTERS
 
 function toggleFilter(tag) {
   if (tag == 'info') {
@@ -58,8 +100,10 @@ function toggleFilter(tag) {
 
 function applyFilter(tag) {
   const filters = document.querySelectorAll('.filter');
+  const filterHeader = document.querySelector("#current-filter");
   const posts = document.querySelectorAll('.post');
   const title = document.querySelector('title');
+  const menuButton = document.querySelector("#filter-menu-button");
 
   for (let i in filters) {
     if (filters[i].classList) {
@@ -87,19 +131,22 @@ function applyFilter(tag) {
   }
   let currentFilter = document.querySelector('.filter.on a').innerHTML;
   if (currentFilter) {
-    title.innerHTML = "Myles Larson : " + currentFilter;
+    updateSiteTitle(currentFilter);
   }
-  document.querySelector("#reset-filters").style.visibility = "visible";
-  showFilterMenu(false);
+  document.querySelector("#current-filter a").innerHTML = currentFilter;
+  filterHeader.classList.add("on");
+  menuButton.classList.add("x");
+  hideFilterMenu();
   onScroll();
 }
 
 function resetFilters() {
-  removeURLFilter();
-
-  const title = document.querySelector('title');
+  const filterHeader = document.querySelector("#current-filter");
   const filters = document.querySelectorAll('.filter');
   const posts = document.querySelectorAll('.post');
+  const menuButton = document.querySelector("#filter-menu-button");
+
+  removeURLFilter();
 
   for (let i in filters) {
     if (filters[i].classList) {
@@ -119,31 +166,35 @@ function resetFilters() {
     }
   }
   showMoreInfo(false);
-  title.innerHTML = "Myles Larson";
-  document.querySelector("#reset-filters").style.visibility = "hidden";
-  showFilterMenu(false);
+  updateSiteTitle();
+  filterHeader.classList.remove("on");
+  menuButton.classList.remove("x");
   onScroll();
 }
+
+
+// INFO
 
 function showMoreInfo(show) {
   const moreInfo = document.querySelector("#more-info");
   const moreInfoButton = document.querySelector("#show-more-info");
-  const title = document.querySelector('title');
 
   if (show == true) {
     updateURLFilter("info");
-    title.innerHTML = "Myles Larson : Info";
+    updateSiteTitle("Info");
     moreInfo.classList.remove("hidden");
     moreInfoButton.classList.add("hidden");
   } else {
     removeURLFilter();
-    title.innerHTML = "Myles Larson";
+    updateSiteTitle();
     moreInfo.classList.add("hidden");
     moreInfoButton.classList.remove("hidden");
   }
-
   onScroll();
 }
+
+
+// URL
 
 function getURLFilter() {
   const url = new URL(window.location.href);
@@ -164,4 +215,13 @@ function removeURLFilter() {
   const url = new URL(window.location.href);
   url.searchParams.delete('filter');
   window.history.pushState(null, '', url.toString());
+}
+
+function updateSiteTitle(filter) {
+  const title = document.querySelector('title');
+  if (filter == undefined) {
+    title.innerHTML = "Myles Larson";
+  } else {
+    title.innerHTML = "Myles Larson : " + filter;
+  }
 }

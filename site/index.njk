@@ -3,23 +3,14 @@ layout: base.njk
 ---
 <header id="index-header" class="match-info difference">
   <h1 id="index-site-title" class="site-title caption" style="opacity: 0;"><a class="quiet difference-color" href="/">{{ meta.title }}</a></h1>
-  <menu id="nav-filters" class="shift">
+  <menu id="nav-filters">
     {% for filter in meta.nav %}
-      <li id="filter-{{ filter | slugify }}" class="filter caption"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
+      <li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
     {% endfor %}
   </menu>
-  <button id="show-filters-button" class="menu-button"></button>
+  <h3 id="current-filter" class="caption"><a class="quiet difference-color" href="javascript:filterMenuButton();">Filters</a></h3>
+  <button id="filter-menu-button">Filter</button>
 </header>
-
-<dialog id="filter-menu" class="difference">
-  <button id="hide-filters-button" class="menu-button"></button>
-  <menu id="" class="">
-    {% for filter in meta.nav %}
-    <li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
-    {% endfor %}
-    <li id="reset-filters" style="visibility: hidden;"><a class="quiet difference-color caption" href="javascript:resetFilters();">Clear</a></li>
-  </menu>
-</dialog>
 
 <main id="index-content" class="grid">
   <article id="info" class="post paragraph">
@@ -63,10 +54,6 @@ layout: base.njk
 </main>
 
 <script>
-  const showFiltersButton = document.querySelector("#show-filters-button");
-  const hideFiltersButton = document.querySelector("#hide-filters-button");
-  let compactNav;
-
   const tags = [
     {% for filter in meta.nav %}
     {
@@ -75,7 +62,6 @@ layout: base.njk
     },
     {% endfor %}
   ];
-  let currentTag = -1;
 
   window.onload = (event) => {
     let params = getURLFilter();
@@ -100,11 +86,7 @@ layout: base.njk
     onScroll();
   });
 
-  showFiltersButton.addEventListener("click", () => {
-    showFilterMenu(true);
-  });
-
-  hideFiltersButton.addEventListener("click", () => {
-    showFilterMenu(false);
+  document.querySelector("#filter-menu-button").addEventListener("click", () => {
+    filterMenuButton();
   });
 </script>
