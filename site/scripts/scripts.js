@@ -4,13 +4,17 @@ function onScroll() {
   const siteTitle = document.querySelector("#index-site-title");
   const infoSection = document.querySelector("#info");
   const filterMenuButton = document.querySelector("#filter-menu-button");
+  const isMenuOpen = document.querySelector("#nav-filters").classList.contains("open");
   let scrollPosition = document.documentElement.scrollTop;
   let trigger = 0;
   trigger += infoSection.scrollHeight;
 
-  if ((trigger <= 0) || (scrollPosition >= trigger)) {
+  if (scrollPosition >= trigger) {
     siteTitle.style.opacity = 1;
     filterMenuButton.classList.remove('shift');
+  } else if (isMenuOpen) {
+    siteTitle.style.opacity = 1;
+    filterMenuButton.classList.add('shift');
   } else {
     siteTitle.style.opacity = 0;
     filterMenuButton.classList.add('shift');
@@ -60,6 +64,7 @@ function showFilterMenu() {
   filterMenu.classList.add("open");
   main.classList.add("blur");
   footer.classList.add("blur");
+  onScroll();
 }
 
 function hideFilterMenu() {
@@ -75,6 +80,7 @@ function hideFilterMenu() {
   filterMenu.classList.remove("open");
   main.classList.remove("blur");
   footer.classList.remove("blur");
+  onScroll();
 }
 
 

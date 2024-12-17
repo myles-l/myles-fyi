@@ -217,13 +217,12 @@ header {
   flex-flow: row nowrap;
   justify-content: space-between;
   column-gap: var(--indent);
-  overflow: visible;
   z-index: 999;
 }
 
 main {
   padding: var(--row-gap) 0;
-  min-height: calc(100vh - (2 * (var(--margin) + var(--caption-leading))));
+  min-height: calc(100vh - (var(--margin) + var(--margin-top) + var(--caption-leading) + var(--caption-leading)));
 }
 
 footer {
@@ -261,14 +260,15 @@ picture img {
 }
 
 #filter-menu-button {
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
-  display: none;
   width: 16px;
   height: var(--body-leading);
   padding: 0;
   border: none;
+  overflow: hidden;
   color: rgba(0,0,0,0); /* Make the text transparent, still visible to screen-readers */
   background: transparent url('/assets/menu.svg') no-repeat top 3px right;
   transition: background-position 80ms ease-in-out;
@@ -400,7 +400,7 @@ figcaption {
 }
 
 .blur {
-  filter: blur(3px) hue-rotate(15deg);
+  filter: blur(15px) hue-rotate(30deg);
 }
 
 /* GRID ------------------------------------------------------------------------- */
