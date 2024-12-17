@@ -1,0 +1,3 @@
+[build]
+	publish = "export"
+	command = "npm run build"
