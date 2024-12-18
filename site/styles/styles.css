@@ -283,7 +283,7 @@ picture img {
 
 #current-filter {
   display: none;
-  margin-right: calc(var(--indent) + 16px);
+  margin-right: calc(0.5rem + 16px);
 }
 
 /* #index-site-title {
@@ -327,8 +327,6 @@ picture img {
 }
 
 #more-info {
-  transition: opacity 200ms ease-in-out;
-  transition: height 8s ease-in-out;
   & p:first-child {
     margin-top: var(--body-paragraph-break);
   }

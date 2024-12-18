@@ -107,38 +107,36 @@ function toggleFilter(tag) {
 function applyFilter(tag) {
   const filters = document.querySelectorAll('.filter');
   const filterHeader = document.querySelector("#current-filter");
+  const filterHeaderText = document.querySelector("#current-filter a");
   const posts = document.querySelectorAll('.post');
   const menuButton = document.querySelector("#filter-menu-button");
 
-  for (let i in filters) {
-    if (filters[i].classList) {
-      if (filters[i].id == ('filter-'+tag)) {
-        if (filters[i].classList.contains('off')) {
-          filters[i].classList.remove('off');
-        }
-        filters[i].classList.add('on');
-      } else {
-        if (filters[i].classList.contains('on')) {
-          filters[i].classList.remove('on');
-        }
-        filters[i].classList.add('off');
+  for (let i = 0; i < filters.length; i++) {
+    if (filters[i].id == ('filter-'+tag)) {
+      if (filters[i].classList.contains('off')) {
+        filters[i].classList.remove('off');
       }
+      filters[i].classList.add('on');
+    } else {
+      if (filters[i].classList.contains('on')) {
+        filters[i].classList.remove('on');
+      }
+      filters[i].classList.add('off');
     }
   }
-  for (let i in posts) {
-    if (posts[i].classList) {
-      if (posts[i].classList.contains('tag-'+tag)) {
-        posts[i].classList.remove('hidden');
-      } else {
-        posts[i].classList.add('hidden');
-      }
+  for (let i = 0; i < posts.length; i++) {
+    if (posts[i].classList.contains('tag-'+tag)) {
+      posts[i].classList.remove('hidden');
+    } else {
+      posts[i].classList.add('hidden');
     }
   }
+
   let currentFilter = document.querySelector('.filter.on a').innerHTML;
   if (currentFilter) {
     updateSiteTitle(currentFilter);
   }
-  document.querySelector("#current-filter a").innerHTML = currentFilter;
+  filterHeaderText.innerHTML = currentFilter;
   updateURLFilter(tag);
   filterHeader.classList.add("on");
   menuButton.classList.add("x");
@@ -152,21 +150,17 @@ function resetFilters() {
   const posts = document.querySelectorAll('.post');
   const menuButton = document.querySelector("#filter-menu-button");
 
-  for (let i in filters) {
-    if (filters[i].classList) {
-      if (filters[i].classList.contains('off')) {
-        filters[i].classList.remove('off');
-      }
-      if (filters[i].classList.contains('on')) {
-        filters[i].classList.remove('on');
-      }    
+  for (let i = 0; i < filters.length; i++) {
+    if (filters[i].classList.contains('off')) {
+      filters[i].classList.remove('off');
     }
+    if (filters[i].classList.contains('on')) {
+      filters[i].classList.remove('on');
+    }    
   }
-  for (let i in posts) {
-    if (posts[i].classList) {
-      if (posts[i].classList.contains('hidden')) {
-        posts[i].classList.remove('hidden');
-      }
+  for (let i = 0; i < posts.length; i++) {
+    if (posts[i].classList.contains('hidden')) {
+      posts[i].classList.remove('hidden');
     }
   }
   showMoreInfo(false);

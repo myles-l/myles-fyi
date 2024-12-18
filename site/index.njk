@@ -54,15 +54,6 @@ layout: base.njk
 </main>
 
 <script>
-  const tags = [
-    {% for filter in meta.nav %}
-    {
-      name: "{{ filter }}",
-      tag: "{{ filter | slugify }}"
-    },
-    {% endfor %}
-  ];
-
   window.onload = (event) => {
     let params = getURLFilter();
     if (params) {
