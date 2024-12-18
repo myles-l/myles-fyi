@@ -108,7 +108,6 @@ function applyFilter(tag) {
   const filters = document.querySelectorAll('.filter');
   const filterHeader = document.querySelector("#current-filter");
   const posts = document.querySelectorAll('.post');
-  const title = document.querySelector('title');
   const menuButton = document.querySelector("#filter-menu-button");
 
   for (let i in filters) {
@@ -140,6 +139,7 @@ function applyFilter(tag) {
     updateSiteTitle(currentFilter);
   }
   document.querySelector("#current-filter a").innerHTML = currentFilter;
+  updateURLFilter(tag);
   filterHeader.classList.add("on");
   menuButton.classList.add("x");
   hideFilterMenu();
@@ -151,8 +151,6 @@ function resetFilters() {
   const filters = document.querySelectorAll('.filter');
   const posts = document.querySelectorAll('.post');
   const menuButton = document.querySelector("#filter-menu-button");
-
-  removeURLFilter();
 
   for (let i in filters) {
     if (filters[i].classList) {
@@ -172,6 +170,7 @@ function resetFilters() {
     }
   }
   showMoreInfo(false);
+  removeURLFilter();
   updateSiteTitle();
   filterHeader.classList.remove("on");
   menuButton.classList.remove("x");
