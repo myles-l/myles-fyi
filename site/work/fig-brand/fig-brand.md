@@ -9,10 +9,10 @@ position: "span-two-thirds expand"
 tags:
  - Visual Design
 ---
-{% pic "fig-poster-square.jpg", "span-two-thirds expand-all", "tktk" %}
-{% text %}
+::: grid
+{% pic "fig-poster-square.jpg", "alt text", "span-two-thirds expand-all" %}
+:::
 
 Branding for the Facebook Interface Guidelines to promote the system and drive internal adoption. Posters were screenprinted and placed throughout Facebook offices.
 
-{% endtext %}
-{% pic "fig-posters-scene.jpg", "", "tktk" %}
+{% pic "fig-posters-scene.jpg", "alt text" %}

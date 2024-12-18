@@ -109,6 +109,7 @@ function applyFilter(tag) {
   const filterHeader = document.querySelector("#current-filter");
   const filterHeaderText = document.querySelector("#current-filter a");
   const posts = document.querySelectorAll('.post');
+  const info = document.querySelector("#info");
   const menuButton = document.querySelector("#filter-menu-button");
 
   for (let i = 0; i < filters.length; i++) {
@@ -131,7 +132,7 @@ function applyFilter(tag) {
       posts[i].classList.add('hidden');
     }
   }
-
+  info.classList.add("hidden");
   let currentFilter = document.querySelector('.filter.on a').innerHTML;
   if (currentFilter) {
     updateSiteTitle(currentFilter);
@@ -148,6 +149,7 @@ function resetFilters() {
   const filterHeader = document.querySelector("#current-filter");
   const filters = document.querySelectorAll('.filter');
   const posts = document.querySelectorAll('.post');
+  const info = document.querySelector("#info");
   const menuButton = document.querySelector("#filter-menu-button");
 
   for (let i = 0; i < filters.length; i++) {
@@ -164,6 +166,7 @@ function resetFilters() {
     }
   }
   showMoreInfo(false);
+  info.classList.remove("hidden");
   removeURLFilter();
   updateSiteTitle();
   filterHeader.classList.remove("on");

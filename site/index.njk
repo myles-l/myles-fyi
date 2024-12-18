@@ -12,8 +12,8 @@ layout: base.njk
   <button id="filter-menu-button">Filter</button>
 </header>
 
-<main id="index-content" class="grid">
-  <article id="info" class="post paragraph">
+<main id="index-content">
+  <section id="info" class="paragraph">
     <p>Myles Larson is a designer and visual artist specialized in digital products. He's based in New York and currently working on {% link "https://signal.org", "Signal" %}.</p>
     <p>This website is an incomplete archive of his visual work, with no preference for medium and in no particular order.<span id="show-more-info" class="caption indent-left no-wrap"><a class="quiet" href="javascript:toggleFilter('info');">More info</a></span></p>
     <div id="more-info" class="hidden">
@@ -35,14 +35,15 @@ layout: base.njk
       </p>
       <p id="hide-more-info" class="caption"><a class="quiet" href="javascript:toggleFilter('info');">Less info</a></p>
     </div>
-  </article>
+  </section>
 
+  <section id="work" class="grid">
   {% for post in collections.work | reverse %}
     <article id="project-{{ post.fileSlug }}" class="post project {% for tag in post.data.tags %}tag-{{ tag | slugify }} {% endfor %}{{ post.data.position }}">
       {% if post.data.cover %}
         <a class="quiet" href="{{ post.url }}">
           {% set path = post.url + post.data.cover.file %}
-          {% pic path, "", post.data.cover.alt %}
+          {% pic path, post.data.cover.alt %}
         </a>
       {% endif %}
       <h2 class="caption"><a class="quiet" href="{{ post.url }}">{% if post.data.title %}{{ post.data.title }}{% else %}{{ post.fileSlug }}{% endif %}
@@ -51,6 +52,7 @@ layout: base.njk
       </a></h2>
     </article>
   {% endfor %}
+  </section>
 </main>
 
 <script>

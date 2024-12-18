@@ -9,15 +9,17 @@ position: ""
 tags:
  - Visual Design
 ---
-{% pic "symbols-hero.png", "", "alt text" %}
-{% text %}
+::: grid
+{% pic "symbols-hero.png", "alt text" %}
+:::
 
 Shortly after beginning work on Signal Messenger in 2018, we realized that we need a set of new icons to use throughout the app on all platforms. Work began in late 2018 and the new icon set launched in 2019, consisting of more than 200 glyphs used on Android, iOS and desktop apps.
 
-{% endtext %}
-{% pic "symbols-1.png", "span-half expand-all", "alt text" %}
-{% pic "symbols-2.png", "span-half align-right expand-all", "alt text" %}
-{% pic "symbols-3.png", "span-half expand-all", "alt text" %}
-{% pic "symbols-4.png", "span-half align-right expand-all", "alt text" %}
-{% pic "symbols-5.png", "span-half expand-all", "alt text" %}
-{% pic "symbols-6.png", "span-half align-right expand-all", "alt text" %}
+::: grid
+{% pic "symbols-1.png", "alt text", "span-half expand-all" %}
+{% pic "symbols-2.png", "alt text", "span-half align-right expand-all" %}
+{% pic "symbols-3.png", "alt text", "span-half expand-all" %}
+{% pic "symbols-4.png", "alt text", "span-half align-right expand-all" %}
+{% pic "symbols-5.png", "alt text", "span-half expand-all" %}
+{% pic "symbols-6.png", "alt text", "span-half align-right expand-all" %}
+:::

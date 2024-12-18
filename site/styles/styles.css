@@ -87,6 +87,14 @@ body {
   min-width: 20rem; /* 320px */
 }
 
+figure,
+picture,
+source,
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 /* TYPOGRAPHY ------------------------------------------------------------------- */
 
@@ -147,7 +155,6 @@ hr {
 /* Spacing -------------------------- */
 
 .paragraph {
-  padding-right: var(--text-margin-right);
   & p {
     margin-bottom: var(--body-paragraph-break);
   }
@@ -163,13 +170,19 @@ hr {
     margin-top: calc(var(--body-paragraph-break) * 2);
     margin-bottom: var(--caption-paragraph-break);
   }
-  & * {
-    max-width: var(--body-width);
+  & .grid,
+  & > picture,
+  & > figure {
+    margin: var(--row-gap) 0;
   }
-  & *:first-child {
+  & > *:not(div, picture, figure, img) {
+    max-width: var(--body-width);
+    margin-right: var(--text-margin-right);
+  }
+  & > *:first-child {
     margin-top: 0;
   }
-  & *:last-child {
+  & > *:last-child {
     margin-bottom: 0;
   }
 }
@@ -233,17 +246,6 @@ footer {
   justify-content: space-between;
 }
 
-picture {
-  background-color: rgba(163,163,163,0.08);
-}
-
-figure picture,
-picture img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 
 /* Index --------------------------- */
 
@@ -304,9 +306,11 @@ picture img {
   }
 }
 
-.project.post picture {
-  display: block;
-  width: 100%;
+#info {
+  margin-bottom: var(--row-gap);
+}
+
+.post picture {
   margin-bottom: var(--text-img-gap);
 }
 
@@ -375,6 +379,7 @@ figcaption {
   color: var(--color-figure-difference);
 }
 
+img.outline,
 .outline img {
   border: 0.5px solid var(--color-outline);
 }
@@ -458,8 +463,6 @@ figcaption {
     grid-column: 3 / span 10;
   }
 }
-
-/* ANIMATIONS ------------------------------------------------------------------- */
 
 
 /* MEDIA QUERIES ---------------------------------------------------------------- */

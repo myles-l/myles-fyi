@@ -16,7 +16,7 @@ module.exports = function(eleventyConfig) {
     return year.toString();
   });
 
-  eleventyConfig.addShortcode("pic", async function(file, classes, alt, caption) {
+  eleventyConfig.addShortcode("pic", async function(file, alt, classes, caption) {
     // Process images
     let path;
     if (this.page.url && !(this.page.url === "/")) {
@@ -50,19 +50,21 @@ module.exports = function(eleventyConfig) {
 
     // Determine if we need to scale up breakpoints to account for the grid
     let multiplier = 1;
-    if (classes.includes("span-one-third")) {
-      multiplier = 3;
-    } else if (classes.includes("span-half")) {
-      multiplier = 2;
-    } else if (classes.includes("span-two-thirds")) {
-      multiplier = 1.5;
-    } else if (classes.includes("span-five-sixths")) {
-      multiplier = 1.2;
+    if (classes) {
+      if (classes.includes("span-one-third")) {
+        multiplier = 3;
+      } else if (classes.includes("span-half")) {
+        multiplier = 2;
+      } else if (classes.includes("span-two-thirds")) {
+        multiplier = 1.5;
+      } else if (classes.includes("span-five-sixths")) {
+        multiplier = 1.2;
+      }
     }
 
     // Apply scaling to the breakpoints
     let xSmall = 480;
-    if (!classes.includes("expand")) {
+    if (classes && !classes.includes("expand")) {
       xSmall *= multiplier;
     }
     let small = 640 * multiplier;
@@ -70,12 +72,17 @@ module.exports = function(eleventyConfig) {
     let large = 1280 * multiplier;
     let xLarge = 1920 * multiplier;
 
-    // Assemble the picture with breakpointss
+    // Assemble the picture with breakpoints
     let html;
-    if (caption) {
-      html = `<figure class="${classes}">\n<picture>\n`;
+    if (!classes || classes == "") {
+      classes = "";
     } else {
-      html = `<picture class="${classes}">\n`;
+      classes = ` class="${classes}"`;
+    }
+    if (caption) {
+      html = `<figure${classes}>\n<picture>\n`;
+    } else {
+      html = `<picture${classes}>\n`;
     }
     for (let i in images){
       if (i >= (images.length - 1)) {
@@ -102,14 +109,6 @@ module.exports = function(eleventyConfig) {
 		return `<a class="tooltip-link" href="${url}"><span class="tooltip">${url}</span>${text}</a>`;
 	});
 
-  eleventyConfig.addShortcode("text", function() {
-		return "<div class='paragraph'>\n";
-	});
-
-  eleventyConfig.addShortcode("endtext", function() {
-    return "\n</div>";
-	});
-
 	eleventyConfig.addShortcode("caption", function(text) {
     return `<p class="caption">${text}</p>`;
 	});
@@ -119,11 +118,10 @@ module.exports = function(eleventyConfig) {
 		breaks: true,
     typographer: true,
 	}));
-  
-  eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(markdownItContainer,'p',{  
+  eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(markdownItContainer,'grid',{  
     render: function (tokens, idx) {
       if (tokens[idx].nesting === 1) {
-        return '<div class="paragraph">\n';
+        return '<div class="grid">\n';
       } else {
         return '</div>\n';
       }
