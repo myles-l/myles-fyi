@@ -2,7 +2,7 @@
 layout: base.njk
 ---
 <header id="index-header" class="match-info difference">
-  <h1 id="index-site-title" class="site-title caption" style="opacity: 0;"><a class="quiet difference-color" href="/">{{ meta.title }}</a></h1>
+  <h1 id="index-site-title" class="site-title caption invisible"><a class="quiet difference-color" href="/">{{ meta.title }}</a></h1>
   <menu id="nav-filters">
     {% for filter in meta.nav %}
       <li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>

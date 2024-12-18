@@ -10,14 +10,14 @@ function onScroll() {
   trigger += infoSection.scrollHeight;
 
   if (scrollPosition >= trigger) {
-    siteTitle.style.opacity = 1;
-    filterMenuButton.classList.remove('shift');
+    siteTitle.classList.remove("invisible");
+    filterMenuButton.classList.remove("shift");
   } else if (isMenuOpen) {
-    siteTitle.style.opacity = 1;
-    filterMenuButton.classList.add('shift');
+    siteTitle.classList.remove("invisible");
+    filterMenuButton.classList.add("shift");
   } else {
-    siteTitle.style.opacity = 0;
-    filterMenuButton.classList.add('shift');
+    siteTitle.classList.add("invisible");
+    filterMenuButton.classList.add("shift");
   }
 }
 
