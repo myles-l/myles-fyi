@@ -389,7 +389,11 @@ img.outline,
 }
 
 .blur {
-  filter: blur(15px) hue-rotate(30deg);
+  filter: url("/assets/filter.svg#n1");
+}
+
+.shadow {
+  text-shadow: 0 0 32px rgba(255,255,255,0.4);
 }
 
 /* GRID ------------------------------------------------------------------------- */
