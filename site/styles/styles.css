@@ -389,7 +389,7 @@ img.outline,
 }
 
 .blur {
-  filter: url("/assets/filter.svg#n1");
+  filter: url("#n1") blur(3px);
 }
 
 .shadow {
