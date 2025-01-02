@@ -7,7 +7,7 @@ cover: {
 }
 position: "span-five-sixths expand-all"
 tags:
- - Product Design
+ - Product design
 ---
 ::: grid
 {% pic "fb-lite-old.png", "alt text", null, "Before" %}

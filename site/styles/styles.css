@@ -289,11 +289,6 @@ footer {
   }
 }
 
-#current-filter {
-  display: none;
-  margin-right: calc(1.5rem + 16px);
-}
-
 .filter {
   display: block;
   &.on a {
@@ -392,7 +387,7 @@ img.outline,
 }
 
 .blur {
-  filter: url("#n1") blur(3px);
+  filter: url("#n1") blur(8px);
 }
 
 .shadow {
@@ -506,22 +501,22 @@ img.outline,
 
 @media screen and (max-width: 72rem) {
   #nav-filters {
-    visibility: hidden;
     flex-flow: column nowrap;
     position: absolute;
     top: 0;
     right: calc(1.5rem + 16px);
-    &.open {
-      visibility: visible;
-    }
     & .filter {
+      display: none;
       margin-bottom: 0.25rem;
+    }
+    & .on {
+      display: block;
+    }
+    &.open .filter {
+      display: block;
     }
   }
   #filter-menu-button {
-    display: block;
-  }
-  #current-filter.on {
     display: block;
   }
 }

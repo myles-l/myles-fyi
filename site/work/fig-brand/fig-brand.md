@@ -7,7 +7,7 @@ cover: {
 }
 position: "span-two-thirds expand"
 tags:
- - Visual Design
+ - Visual design
 ---
 ::: grid
 {% pic "fig-poster-square.jpg", "alt text", "span-two-thirds expand-all" %}

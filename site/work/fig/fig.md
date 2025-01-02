@@ -7,7 +7,7 @@ cover: {
 }
 position: ""
 tags:
- - Product Design
+ - Product design
 ---
 {% pic "hero.png", "alt text" %}
 

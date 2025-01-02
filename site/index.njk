@@ -4,11 +4,8 @@ layout: base.njk
 <header id="index-header" class="match-info difference">
   <h1 id="index-site-title" class="site-title caption invisible"><a class="quiet difference-color" href="/">{{ meta.title }}</a></h1>
   <menu id="nav-filters">
-    {% for filter in meta.nav %}
-      <li id="filter-{{ filter | slugify }}" class="caption filter"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
-    {% endfor %}
+    {% for filter in meta.nav %}<li id="filter-{{ filter | slugify }}" class="caption filter"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>{% endfor %}
   </menu>
-  <h3 id="current-filter" class="caption"><a class="quiet difference-color" href="javascript:filterMenuButton();">Filters</a></h3>
   <button id="filter-menu-button">Filter</button>
 </header>
 
@@ -53,7 +50,7 @@ layout: base.njk
   </section>
 </main>
 
-<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position: absolute;">
   <defs>
     <filter id="n1">
       <feTurbulence type="fractalNoise" baseFrequency="0.001 0.01" numOctaves="5" result="NOISE" seed="142227"></feTurbulence>

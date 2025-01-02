@@ -7,7 +7,7 @@ cover: {
 }
 position: ""
 tags:
- - Visual Design
+ - Visual design
 ---
 ::: grid
 {% pic "symbols-hero.png", "alt text" %}

@@ -8,7 +8,7 @@ cover: {
 }
 position: ""
 tags:
- - Product Design
+ - Product design
 ---
 ::: grid
 {% pic "Hero - iPhone.png", "Signal for iPhone", "span-half expand-all" %}

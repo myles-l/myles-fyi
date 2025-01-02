@@ -43,12 +43,8 @@ function copyToClipboard(address) {
 // FILTER MENU
 
 function filterMenuButton() {
-  const isFilterOn = document.querySelector("#current-filter").classList.contains("on");
   const isMenuOpen = document.querySelector("#nav-filters").classList.contains("open");
-
-  if (isFilterOn) {
-    resetFilters();
-  } else if (isMenuOpen) {
+  if (isMenuOpen) {
     hideFilterMenu();
   } else {
     showFilterMenu();
@@ -73,11 +69,8 @@ function hideFilterMenu() {
   const filterMenu = document.querySelector("#nav-filters");
   const main = document.querySelector("main");
   const footer = document.querySelector("footer");
-  const isFilterOn = document.querySelector("#current-filter").classList.contains("on");
 
-  if (!isFilterOn) {
-    menuButton.classList.remove("x");
-  }
+  menuButton.classList.remove("x");
   filterMenu.classList.remove("open");
   main.classList.remove("blur");
   footer.classList.remove("blur");
@@ -107,11 +100,8 @@ function toggleFilter(tag) {
 
 function applyFilter(tag) {
   const filters = document.querySelectorAll('.filter');
-  const filterHeader = document.querySelector("#current-filter");
-  const filterHeaderText = document.querySelector("#current-filter a");
   const posts = document.querySelectorAll('.post');
   const info = document.querySelector("#info");
-  const menuButton = document.querySelector("#filter-menu-button");
 
   for (let i = 0; i < filters.length; i++) {
     if (filters[i].id == ('filter-'+tag)) {
@@ -134,24 +124,16 @@ function applyFilter(tag) {
     }
   }
   info.classList.add("hidden");
-  let currentFilter = document.querySelector('.filter.on a').innerHTML;
-  if (currentFilter) {
-    updateSiteTitle(currentFilter);
-  }
-  filterHeaderText.innerHTML = currentFilter;
+  updateSiteTitle(deslug(tag));
   updateURLFilter(tag);
-  filterHeader.classList.add("on");
-  menuButton.classList.add("x");
   hideFilterMenu();
   onScroll();
 }
 
 function resetFilters() {
-  const filterHeader = document.querySelector("#current-filter");
   const filters = document.querySelectorAll('.filter');
   const posts = document.querySelectorAll('.post');
   const info = document.querySelector("#info");
-  const menuButton = document.querySelector("#filter-menu-button");
 
   for (let i = 0; i < filters.length; i++) {
     if (filters[i].classList.contains('off')) {
@@ -170,8 +152,7 @@ function resetFilters() {
   info.classList.remove("hidden");
   removeURLFilter();
   updateSiteTitle();
-  filterHeader.classList.remove("on");
-  menuButton.classList.remove("x");
+  hideFilterMenu();
   onScroll();
 }
 
@@ -229,6 +210,9 @@ function updateSiteTitle(filter) {
   }
 }
 
+
+// HELPERS
+
 function getOffset( el ) {
   var _x = 0;
   var _y = 0;
@@ -238,4 +222,26 @@ function getOffset( el ) {
       el = el.offsetParent;
   }
   return { top: _y, left: _x };
+}
+
+function getCurrentFilter(){
+  const filters = document.querySelectorAll('.filter');
+  let currentFilter = "none";
+
+  for (let i = 0; i < filters.length; i++) {
+    if (filters[i].classList.contains('on')) {
+      currentFilter = filters[i].id.replace("filter-", "");
+    }
+  }
+  return currentFilter;
+}
+
+function deslug(tag) {
+  if (typeof tag === "string") {
+    tag = tag.replaceAll("-", " ");
+    let first = tag.at(0).toUpperCase();
+    return first + tag.slice(1);
+  } else {
+    return "not a string";
+  }
 }

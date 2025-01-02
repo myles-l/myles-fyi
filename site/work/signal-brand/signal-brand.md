@@ -7,7 +7,7 @@ cover: {
 }
 position: "span-five-sixths expand-all"
 tags:
- - Visual Design
+ - Visual design
 ---
 ::: grid
 {% pic "sticker.jpg", "alt text", "span-five-sixths expand-all" %}
