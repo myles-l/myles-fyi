@@ -1,6 +1,6 @@
 ---
 title: "Signal Redesign"
-when: "2018—2019"
+when: "2018"
 date: 2018-10-01
 cover: {
   file: "image.png",
@@ -16,7 +16,7 @@ tags:
 {% pic "Hero - Desktop.png", "Signal for desktop" %}
 :::
 
-{% link "https://signal.org", "Signal Messenger" %} is a secure communication platform designed to be as simple and easy to use as possible, without compromising privacy. I joined Signal in 2018 as the first full-time designer, {% link "https://signal.org/blog/signal-foundation/", "Signal received substantial funding" %} for the first time and started to grow.
+{% link "https://signal.org", "Signal Messenger" %} is a secure communication platform designed to be as simple and easy to use as possible, without compromising privacy. I joined Signal in early 2018 as the first full-time designer, just as {% link "https://signal.org/blog/signal-foundation/", "Signal received substantial funding" %} for the first time and started to grow.
 
 The challenges Signal faced were significant—it was primarily seen as a niche messenger, used for specific tasks that required privacy. The goal was to shift that perception: like privacy, Signal is for *everybody*. 
 
