@@ -47,14 +47,8 @@
   --body-size: 2rem; /* 32 */
   --body-leading: 2.5rem; /* 40 */
   --body-tracking: -0.02em;
-  --body-paragraph-break: 2rem; /* 40 */
-  --body-width: 38rem;
-
-  --headline-size: 2.25rem; /* 36 */
-  --headline-leading: 2.75rem; /* 44 */
-  --headline-tracking: -0.02em;
-  --headline-paragraph-break: 2.25rem; /* 40 */
-  --headline-width: 42rem;
+  --body-paragraph-break: 2rem; /* 32 */
+  --body-width: 40rem;
       
   --color-ground: #FFF;
   --color-figure: #1A1A1A;
@@ -497,10 +491,10 @@ img.outline,
   :root {
     /* min_size + (max_size - min_size) * (100vw - min_breakpoint) / (max_breakpoint - min_breakpoint) */
 
-    --body-size: calc(1.375rem + (2.25 - 1.375)*(100vw - 30rem)/(80 - 30));
-    --body-leading: calc(1.75rem + (2.75 - 1.75)*(100vw - 30rem)/(80 - 30));
-    --body-paragraph-break: calc(1rem + (1.25 - 1)*(100vw - 30rem)/(80 - 30));
-    --body-width: calc(26.125rem + (42 - 26.125)*(100vw - 30rem)/(80 - 30));
+    --body-size: calc(1.375rem + (2 - 1.375)*(100vw - 30rem)/(80 - 30));
+    --body-leading: calc(1.75rem + (2.5 - 1.75)*(100vw - 30rem)/(80 - 30));
+    --body-paragraph-break: calc(1.375rem + (2 - 1.375)*(100vw - 30rem)/(80 - 30));
+    --body-width: calc(27.5rem + (40 - 26.125)*(100vw - 30rem)/(80 - 30));
 
     --margin: calc(0.625rem + (1 - 0.625)*(100vw - 48rem)/(80 - 48));
     --margin-top: calc(0.5rem + (0.625 - 0.5)*(100vw - 48rem)/(80 - 48));
@@ -633,8 +627,8 @@ img.outline,
   :root {
     --body-size: 1.375rem;
     --body-leading: 1.75rem;
-    --body-paragraph-break: 1rem;
-    --body-width: 26.125rem;
+    --body-paragraph-break: 1.375rem;
+    --body-width: 27.5rem;
   }
   a {
     text-underline-offset: 0.25rem;
