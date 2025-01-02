@@ -291,14 +291,11 @@ footer {
 
 #current-filter {
   display: none;
-  margin-right: calc(0.5rem + 16px);
+  margin-right: calc(1.5rem + 16px);
 }
 
 .filter {
   display: block;
-  font-size: var(--caption-size);
-  line-height: var(--caption-leading);
-  letter-spacing: var(--caption-tracking);
   &.on a {
     text-decoration: none;
   }
@@ -512,15 +509,13 @@ img.outline,
     visibility: hidden;
     flex-flow: column nowrap;
     position: absolute;
-    top: var(--body-leading);
-    right: 0;
+    top: 0;
+    right: calc(1.5rem + 16px);
     &.open {
       visibility: visible;
     }
     & .filter {
-      font-size: var(--body-size);
-      line-height: var(--body-leading);
-      letter-spacing: var(--body-tracking);
+      margin-bottom: 0.25rem;
     }
   }
   #filter-menu-button {

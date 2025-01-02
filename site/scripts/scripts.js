@@ -9,15 +9,16 @@ function onScroll() {
   let trigger = 0;
   trigger += infoSection.scrollHeight;
 
-  if (scrollPosition >= trigger) {
-    siteTitle.classList.remove("invisible");
-    filterMenuButton.classList.remove("shift");
-  } else if (isMenuOpen) {
-    siteTitle.classList.remove("invisible");
+  if (trigger > 0 && scrollPosition < trigger) {
     filterMenuButton.classList.add("shift");
+    if (isMenuOpen) {
+      siteTitle.classList.remove("invisible");
+    } else {
+      siteTitle.classList.add("invisible");
+    }
   } else {
-    siteTitle.classList.add("invisible");
-    filterMenuButton.classList.add("shift");
+    filterMenuButton.classList.remove("shift");
+    siteTitle.classList.remove("invisible");
   }
 }
 

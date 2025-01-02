@@ -5,7 +5,7 @@ layout: base.njk
   <h1 id="index-site-title" class="site-title caption invisible"><a class="quiet difference-color" href="/">{{ meta.title }}</a></h1>
   <menu id="nav-filters">
     {% for filter in meta.nav %}
-      <li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
+      <li id="filter-{{ filter | slugify }}" class="caption filter"><a class="quiet difference-color" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>
     {% endfor %}
   </menu>
   <h3 id="current-filter" class="caption"><a class="quiet difference-color" href="javascript:filterMenuButton();">Filters</a></h3>
