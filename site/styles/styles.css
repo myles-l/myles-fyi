@@ -44,11 +44,17 @@
   --caption-tracking: 0.01em;
   --caption-paragraph-break: 1rem;
   
-  --body-size: 2.25rem; /* 36 */
-  --body-leading: 2.75rem; /* 44 */
+  --body-size: 2rem; /* 32 */
+  --body-leading: 2.5rem; /* 40 */
   --body-tracking: -0.02em;
-  --body-paragraph-break: 2.25rem; /* 40 */
-  --body-width: 42rem;
+  --body-paragraph-break: 2rem; /* 40 */
+  --body-width: 38rem;
+
+  --headline-size: 2.25rem; /* 36 */
+  --headline-leading: 2.75rem; /* 44 */
+  --headline-tracking: -0.02em;
+  --headline-paragraph-break: 2.25rem; /* 40 */
+  --headline-width: 42rem;
       
   --color-ground: #FFF;
   --color-figure: #1A1A1A;
@@ -125,6 +131,12 @@ figcaption,
   letter-spacing: var(--caption-tracking);
   font-weight: normal;
 }
+
+.headline {
+  font-size: var(--headline-size);
+  line-height: var(--headline-leading);
+  letter-spacing: var(--headline-tracking);
+  font-weight: normal;}
 
 i,
 em {
