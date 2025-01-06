@@ -5,7 +5,6 @@ cover: {
   file: "hero.png",
   alt: "Acrylic painting on white canvas of the Windows 95 icon that was displayed when a file was not found"
 }
-position: ""
 tags:
  - Product design
 ---
@@ -21,18 +20,18 @@ The inital library included the type system, color palette, iconography, and UI 
 {% pic "explore.png", "Entity header component explorations", null, 'Entity Header design explorations' %}
 {% pic "wilde.png", "Entity header on iOS", null, "Entity header on iOS" %}
 {% pic "fb4a.png", "Entity header on Android", null, "Entity header on Android" %}
-{% pic "fb_spatial_map.png", "Spatial model", "span-two-thirds expand-all outline", "Spatial model of Facebook's UI" %}
+{% pic "fb_spatial_map.png", "Spatial model", "span-two-thirds expand outline", "Spatial model of Facebook's UI" %}
 :::
 
 We shipped the first version of the Facebook Interface Guidelines (FIG) in February 2016. It was initially distributed as one large "Master Sheet" with every component, including specs and implementation details. This was later replaced by a plugin for Sketch.
 
 ::: grid
 {% pic "welcome.png", "alt text" %}
-{% pic "tab_bar.png", "alt text", "span-half expand-all outline" %}
-{% pic "nav_bar.png", "alt text", "span-half align-right expand-all" %}
-{% pic "action_bars.png", "alt text", "span-half expand-all" %}
-{% pic "fb4aSpec.png", "alt text", "span-half align-right expand-all" %}
-{% pic "Push.png", "alt text", "span-half expand-all" %}
+{% pic "tab_bar.png", "alt text", "span-half expand outline" %}
+{% pic "nav_bar.png", "alt text", "span-half align-right expand" %}
+{% pic "action_bars.png", "alt text", "span-half expand" %}
+{% pic "fb4aSpec.png", "alt text", "span-half align-right expand" %}
+{% pic "Push.png", "alt text", "span-half expand" %}
 :::
 
 The FIG library was adopted quickly by Facebook's 300+ designers, and has since continued to grow and adapt as the foundation of Facebook's UI on every platform.

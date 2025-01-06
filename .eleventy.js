@@ -30,7 +30,7 @@ module.exports = function(eleventyConfig) {
     }
     let src = "site" + path + file;
     let data = await Image(src, {
-			widths: [480, 960, 1280, 1920, 2560],
+			widths: [480, 640, 960, 1280, 1920, 2560],
 			formats: ["auto"],
       urlPath: path + "images/",
       outputDir: "export" + path + "images/",
@@ -38,18 +38,23 @@ module.exports = function(eleventyConfig) {
         compressionLevel: 8, 
         palette: true 
       },
+      svgShortCircuit: true,
 		});
     let images;
-    if (data.jpeg) {
+    if (data.svg) {
+      images = data.svg;
+    } else if (data.jpeg) {
       images = data.jpeg;
     } else if (data.png) {
       images = data.png;
     } else {
-      console.log("Only PNG and JPG supported!");
+      console.log("only PNG, JPG, or SVG supported");
     }
 
     // Determine if we need to scale up breakpoints to account for the grid
     let multiplier = 1;
+    let compactMultiplier = 1;
+    let breakpoint = 768; // breakpoint of mobile size (48rem)
     if (classes) {
       if (classes.includes("span-one-third")) {
         multiplier = 3;
@@ -60,17 +65,18 @@ module.exports = function(eleventyConfig) {
       } else if (classes.includes("span-five-sixths")) {
         multiplier = 1.2;
       }
+      if (classes.includes("expand-half")) {
+        compactMultiplier = 2;
+      } else if (classes.includes("expand-two-thirds")) {
+        compactMultiplier = 1.5;
+      } else if (classes.includes("expand-five-sixths")) {
+        compactMultiplier = 1.2;
+      } else if (classes.includes("expand")) {
+        compactMultiplier = 1;
+      } else {
+        compactMultiplier = multiplier;
+      }
     }
-
-    // Apply scaling to the breakpoints
-    let xSmall = 480;
-    if (classes && !classes.includes("expand")) {
-      xSmall *= multiplier;
-    }
-    let small = 640 * multiplier;
-    let medium = 960 * multiplier;
-    let large = 1280 * multiplier;
-    let xLarge = 1920 * multiplier;
 
     // Assemble the picture with breakpoints
     let html;
@@ -86,15 +92,9 @@ module.exports = function(eleventyConfig) {
     }
     for (let i in images){
       if (i >= (images.length - 1)) {
-        html += `<img src="${images[i].url}" alt="${alt}" width="${images[i].width}" height="${images[i].height}" />\n`;
-      } else if (images[i].width == 480) {
-        html += `<source srcset="${images[i].url}" media="(width <= ${xSmall}px) and (resolution < 2x)" />\n`;
-      } else if (images[i].width == 960) {
-        html += `<source srcset="${images[i].url}" media="((${xSmall}px < width <= ${medium}px) and (resolution < 2x)) or ((width <= ${xSmall}px) and (resolution >= 2x))" />\n`;
-      } else if (images[i].width == 1280) {
-        html += `<source srcset="${images[i].url}" media="((${medium}px < width <= ${large}px) and (resolution < 2x)) or ((${xSmall}px < width <= ${small}px) and (resolution >= 2x))" />\n`;
-      } else if (images[i].width == 1920) {
-        html += `<source srcset="${images[i].url}" media="((${large}px < width <= ${xLarge}px) and (resolution < 2x)) or ((${small}px < width <= ${medium}px) and (resolution >= 2x))" />\n`;
+        html += `<img src="${images[i].url}" alt="${alt}" role="img" width="${images[i].width}" height="${images[i].height}" />\n`;
+      } else {
+        html += `<source srcset="${srcset(images[i])}" media="${media(images[i])}" />\n`;
       }
     }
     if (caption) {
@@ -103,7 +103,40 @@ module.exports = function(eleventyConfig) {
       html += `</picture>\n`;
     }
     return html;
-});
+
+    function srcset(image) {
+      let two = images.find(images => {
+        return images.width === image.width * 2;
+      });
+      if (two) {
+        return image.url + ", " + two.url + " 2x" ;
+      } else {
+        return image.url;
+      }
+    }
+
+    function media(image) {
+      let prev;
+      for (let i in images){
+        if (((images[i].width > prev) || !prev) && (images[i].width < image.width)) {
+          prev = images[i].width;
+        }
+      }
+      if (prev) {
+        if (image.width < breakpoint) {
+          return "(" + (prev * compactMultiplier) + "px < width <= " + (image.width * compactMultiplier) + "px)";
+        } else {
+          return "(" + (prev * multiplier) + "px < width <= " + (image.width * multiplier) + "px)";
+        }
+      } else {
+        if (image.width < breakpoint) {
+          return "(width <= " + (image.width * compactMultiplier) + "px)";
+        } else {
+          return "(width <= " + (image.width * multiplier) + "px)";
+        }
+      }
+    }
+  });
 
   eleventyConfig.addShortcode("link", function(url, text) {
 		return `<a class="tooltip-link" href="${url}"><span class="tooltip">${url}</span>${text}</a>`;

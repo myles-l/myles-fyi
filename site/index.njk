@@ -34,11 +34,15 @@ layout: base.njk
 
   <section id="work" class="grid">
   {% for post in collections.work | reverse %}
-    <article id="project-{{ post.fileSlug }}" class="post project {% for tag in post.data.tags %}tag-{{ tag | slugify }} {% endfor %}{{ post.data.position }}">
+    <article id="project-{{ post.fileSlug }}" class="post project {% for tag in post.data.tags %}tag-{{ tag | slugify }} {% endfor %}{% if post.data.position %}{{ post.data.position }}{% endif %}">
       {% if post.data.cover %}
         <a class="quiet" href="{{ post.url }}">
           {% set path = post.url + post.data.cover.file %}
-          {% pic path, post.data.cover.alt %}
+          {% if post.data.cover.class %}
+            {% pic path, post.data.cover.alt, post.data.cover.class %}
+          {% else %}
+            {% pic path, post.data.cover.alt %}
+          {% endif %}
         </a>
       {% endif %}
       <h2 class="caption"><a class="quiet" href="{{ post.url }}">{% if post.data.title %}{{ post.data.title }}{% else %}{{ post.fileSlug }}{% endif %}

@@ -5,7 +5,7 @@ cover: {
   file: "fb-lite-cover.png",
   alt: "Acrylic painting on white canvas of the Windows 95 icon that was displayed when a file was not found"
 }
-position: "span-five-sixths expand-all"
+position: "span-five-sixths expand"
 tags:
  - Product design
 ---
@@ -25,8 +25,8 @@ The challenges were significant, as FB Lite has many design constraints: No anim
 ::: grid
 {% pic "attachments.png", "alt text goes here" %}
 {% pic "ufi.png", "alt text goes here" %}
-{% pic "story-title.png", "alt text goes here", "span-half expand-all" %}
-{% pic "story-text.png", "alt text goes here", "span-half align-right expand-all" %}
+{% pic "story-title.png", "alt text goes here", "span-half expand" %}
+{% pic "story-text.png", "alt text goes here", "span-half align-right expand" %}
 :::
 
 We worked closely with the News Feed and Facebook Lite design and engineering teams to create solutions that were both performant and an improved user experience. Most of the new components were in testing by December 2017, and shipped in early 2018.
