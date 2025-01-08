@@ -60,11 +60,12 @@ layout: base.njk
             {% pic path, post.media[0].alt, class %}
           </div>
         {% endif %}
-        <div class="post-title">
-          <h2 class="caption">{{ post.title }}
-            {% if post.description %}<span class="indent-left">{{ post.description }}</span>{% endif %}
-            {% if post.date %}<span class="indent-left">{{ post.date }}</span>{% endif %}
-          </h2>
+        <div class="post-info">
+          <div class="post-title">
+            <h2 class="caption">{{ post.title }}</h2>
+            {% if post.description %}<p class="caption">{{ post.description }}</p>{% endif %}
+            {% if post.date %}<p class="caption">{{ post.date }}</p>{% endif %}
+          </div>
           {% if post.media.length > 1 %}<p class="caption no-wrap"><span class="series-index">1</span> &sol; {{ post.media.length }}</p>{% endif %}
         </div>
         {% if post.media.length > 1 %}

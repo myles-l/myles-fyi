@@ -21,8 +21,8 @@ module.exports = function () {
         url: "https://www.linkedin.com/in/myleslarson"
       }
     ],
-    copyright: "2024 Myles Larson Design LLC",
-    updated: "14 Dec 2024",
+    copyright: "2025 Myles Larson Design LLC",
+    updated: "6 Jan 2025",
     nav: [
       "Product design",
       "Visual design",

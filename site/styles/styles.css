@@ -278,7 +278,7 @@ footer {
     &.on a {
       text-decoration: underline;
       text-decoration-color: var(--color-figure);
-      text-decoration-thickness: 1.5px;
+      text-decoration-thickness: 1.25px;
       text-underline-offset: 0.25rem;
     }
     & a:hover {
@@ -333,13 +333,19 @@ footer {
   width: auto;
 }
 
-.post-title {
+.post-info {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   column-gap: var(--indent);
   width: 100%;
   margin-top: var(--text-img-gap);
+}
+
+.post-title {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: var(--indent);
 }
 
 
