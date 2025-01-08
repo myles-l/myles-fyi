@@ -1,28 +1,3 @@
-// SCROLL
-
-function onScroll() {
-  const siteTitle = document.querySelector("#index-site-title");
-  const infoSection = document.querySelector("#info");
-  const filterMenuButton = document.querySelector("#filter-menu-button");
-  const isMenuOpen = document.querySelector("#nav-filters").classList.contains("open");
-  let scrollPosition = document.documentElement.scrollTop;
-  let trigger = 0;
-  trigger += infoSection.scrollHeight;
-
-  if (trigger > 0 && scrollPosition < trigger) {
-    filterMenuButton.classList.add("shift");
-    if (isMenuOpen) {
-      siteTitle.classList.remove("invisible");
-    } else {
-      siteTitle.classList.add("invisible");
-    }
-  } else {
-    filterMenuButton.classList.remove("shift");
-    siteTitle.classList.remove("invisible");
-  }
-}
-
-
 // CLIPBOARD
 
 function copyToClipboard(address) {
@@ -43,7 +18,7 @@ function copyToClipboard(address) {
 // FILTER MENU
 
 function filterMenuButton() {
-  const isMenuOpen = document.querySelector("#nav-filters").classList.contains("open");
+  const isMenuOpen = document.querySelector("#filter-popover").classList.contains("open");
   if (isMenuOpen) {
     hideFilterMenu();
   } else {
@@ -53,28 +28,18 @@ function filterMenuButton() {
 
 function showFilterMenu() {
   const menuButton = document.querySelector("#filter-menu-button");
-  const filterMenu = document.querySelector("#nav-filters");
-  const main = document.querySelector("main");
-  const footer = document.querySelector("footer");
+  const filterMenu = document.querySelector("#filter-popover");
 
   menuButton.classList.add("x");
   filterMenu.classList.add("open");
-  main.classList.add("blur");
-  footer.classList.add("blur");
-  onScroll();
 }
 
 function hideFilterMenu() {
   const menuButton = document.querySelector("#filter-menu-button");
-  const filterMenu = document.querySelector("#nav-filters");
-  const main = document.querySelector("main");
-  const footer = document.querySelector("footer");
+  const filterMenu = document.querySelector("#filter-popover");
 
   menuButton.classList.remove("x");
   filterMenu.classList.remove("open");
-  main.classList.remove("blur");
-  footer.classList.remove("blur");
-  onScroll();
 }
 
 
@@ -102,6 +67,8 @@ function applyFilter(tag) {
   const filters = document.querySelectorAll('.filter');
   const posts = document.querySelectorAll('.post');
   const info = document.querySelector("#info");
+  const menuButton = document.querySelector("#filter-menu-button");
+  const siteTitle = document.querySelector("#index-site-title");
 
   for (let i = 0; i < filters.length; i++) {
     if (filters[i].id == ('filter-'+tag)) {
@@ -124,16 +91,20 @@ function applyFilter(tag) {
     }
   }
   info.classList.add("hidden");
+  siteTitle.classList.remove("invisible");
+  menuButton.classList.remove("shift");
   updateSiteTitle(deslug(tag));
   updateURLFilter(tag);
   hideFilterMenu();
-  onScroll();
 }
 
 function resetFilters() {
   const filters = document.querySelectorAll('.filter');
   const posts = document.querySelectorAll('.post');
   const info = document.querySelector("#info");
+  const menuButton = document.querySelector("#filter-menu-button");
+  const siteTitle = document.querySelector("#index-site-title");
+  const allFilter = document.querySelector("#filter-all");
 
   for (let i = 0; i < filters.length; i++) {
     if (filters[i].classList.contains('off')) {
@@ -150,10 +121,12 @@ function resetFilters() {
   }
   showMoreInfo(false);
   info.classList.remove("hidden");
+  siteTitle.classList.add("invisible");
+  menuButton.classList.add("shift");
+  allFilter.classList.add("on");
   removeURLFilter();
   updateSiteTitle();
   hideFilterMenu();
-  onScroll();
 }
 
 
@@ -174,7 +147,6 @@ function showMoreInfo(show) {
     moreInfo.classList.add("hidden");
     moreInfoButton.classList.remove("hidden");
   }
-  onScroll();
 }
 
 
@@ -243,5 +215,33 @@ function deslug(tag) {
     return first + tag.slice(1);
   } else {
     return "not a string";
+  }
+}
+
+
+// SERIES
+
+function series(post) {
+  const container = document.querySelector(post + " .series");
+  const length = document.querySelectorAll(post + " .slide").length;
+  const index = document.querySelector(post + " .series-index");
+  let i = 1;
+  let z = 1;
+
+  container.addEventListener("click", next);
+
+  function next() {
+    const prev = document.querySelector(post + " .slide-" + i);
+    i++;
+    if (i > length) {
+      i = 1;
+    }
+    z++;
+    const next = document.querySelector(post + " .slide-" + i);
+
+    next.classList.remove("invisible");
+    prev.classList.add("invisible");
+    next.style.zIndex = z;
+    index.innerHTML = i;
   }
 }

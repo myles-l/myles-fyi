@@ -32,8 +32,8 @@ module.exports = function(eleventyConfig) {
     let data = await Image(src, {
 			widths: [480, 640, 960, 1280, 1920, 2560],
 			formats: ["auto"],
-      urlPath: path + "images/",
-      outputDir: "export" + path + "images/",
+      urlPath: path,
+      outputDir: "export" + path,
       sharpPngOptions: { 
         compressionLevel: 8, 
         palette: true 
