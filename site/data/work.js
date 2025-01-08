@@ -151,29 +151,19 @@ module.exports = function () {
           file: "Hero - Android.png",
           alt: "Signal for Android",
           class: ""
-        },
-        {
-          file: "Hero - Desktop.png",
-          alt: "Signal for desktop",
-          class: ""
         }
       ]
     },
     {
       slug: "fb-lite",
       title: "Facebook Lite",
-      description: "Update to News Feed for low-end Android devices",
+      description: "Updated News Feed for low-end Android devices",
       date: "2017",
       tags: [ "Product design", "Design system" ],
       class: "span-five-sixths expand",
       media: [
         {
           file: "fb-lite-cover.png",
-          alt: "alt text",
-          class: ""
-        },
-        {
-          file: "fb-lite.png",
           alt: "alt text",
           class: ""
         }
@@ -208,7 +198,7 @@ module.exports = function () {
           class: ""
         },
         {
-          file: "explore.png",
+          file: "wilde.png",
           alt: "tk",
           class: ""
         },
@@ -218,12 +208,17 @@ module.exports = function () {
           class: ""
         },
         {
-          file: "fb_spatial_map.png",
+          file: "fb4aSpec.png",
           alt: "tk",
           class: ""
         },
         {
           file: "Push.png",
+          alt: "tk",
+          class: ""
+        },
+        {
+          file: "fb_spatial_map.png",
           alt: "tk",
           class: ""
         }

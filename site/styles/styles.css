@@ -44,10 +44,10 @@
   --caption-tracking: 0.01em;
   --caption-paragraph-break: 1rem;
   
-  --body-size: 2rem; /* 32 */
-  --body-leading: 2.5rem; /* 40 */
+  --body-size: 2.5rem; /* 40 */
+  --body-leading: 3rem; /* 48 */
   --body-tracking: -0.02em;
-  --body-paragraph-break: 2rem; /* 32 */
+  --body-paragraph-break: 2.5rem; /* 40 */
   --body-width: 40rem;
       
   --color-ground: #FFF;
@@ -488,10 +488,10 @@ img.outline,
   :root {
     /* min_size + (max_size - min_size) * (100vw - min_breakpoint) / (max_breakpoint - min_breakpoint) */
 
-    --body-size: calc(1.375rem + (2 - 1.375)*(100vw - 30rem)/(80 - 30));
-    --body-leading: calc(1.75rem + (2.5 - 1.75)*(100vw - 30rem)/(80 - 30));
-    --body-paragraph-break: calc(1.375rem + (2 - 1.375)*(100vw - 30rem)/(80 - 30));
-    --body-width: calc(27.5rem + (40 - 26.125)*(100vw - 30rem)/(80 - 30));
+    --body-size: calc(1.5rem + (2.5 - 1.5)*(100vw - 30rem)/(80 - 30));
+    --body-leading: calc(1.875rem + (3 - 1.875)*(100vw - 30rem)/(80 - 30));
+    --body-paragraph-break: calc(1.5rem + (2.5 - 1.5)*(100vw - 30rem)/(80 - 30));
+    --body-width: calc(24rem + (40 - 24)*(100vw - 30rem)/(80 - 30));
 
     --margin: calc(0.625rem + (1 - 0.625)*(100vw - 48rem)/(80 - 48));
     --margin-top: calc(0.5rem + (0.625 - 0.5)*(100vw - 48rem)/(80 - 48));
@@ -583,10 +583,10 @@ img.outline,
 
 @media screen and (max-width: 30rem) {
   :root {
-    --body-size: 1.375rem;
-    --body-leading: 1.75rem;
-    --body-paragraph-break: 1.375rem;
-    --body-width: 27.5rem;
+    --body-size: 1.5rem;
+    --body-leading: 1.875rem;
+    --body-paragraph-break: 1.5rem;
+    --body-width: 24rem;
   }
   a {
     text-underline-offset: 0.25rem;
