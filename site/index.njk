@@ -9,7 +9,7 @@ layout: base.njk
 </header>
 
 <div id="filter-menu">
-  <button id="filter-menu-button" class="shift">Filter</button>
+  <button id="filter-menu-button" class="shift invert">Filter</button>
   <menu id="filter-popover">
     <li id="filter-all" class="caption filter on"><a class="quiet" href="javascript:resetFilters();">All work</a></li>
     {% for filter in meta.nav %}<li id="filter-{{ filter | slugify }}" class="caption filter"><a class="quiet" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>{% endfor %}
