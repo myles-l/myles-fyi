@@ -215,17 +215,16 @@ footer {
   & .filter {
     display: block;
     text-align: right;
-    &.on {
+    &.on a {
       text-decoration: none;
     }
-    &.off {
+    &.off a {
       text-decoration: line-through;
       text-decoration-color: var(--color-figure);
       text-decoration-thickness: 1.5px;
-      border: none;
-      &:hover {
-        text-decoration: none;
-      }
+    }
+    &.off a:hover {
+      text-decoration: none;
     }
   }
 }
@@ -281,7 +280,7 @@ footer {
       text-decoration-thickness: 1.25px;
       text-underline-offset: 0.25rem;
     }
-    & a:hover {
+    &.off a:hover {
       text-decoration: underline;
       text-decoration-color: var(--color-figure-secondary);
       text-decoration-thickness: 0.5px;
@@ -477,10 +476,13 @@ img.outline,
     --color-figure: #EAEAEA;
     --color-figure-secondary: #777;
     --color-figure-difference: #EAEAEA;
-    --color-outline: rgba(255,255,255,0.24)
+    --color-outline: rgba(255,255,255,0.24);
   }
   .invert {
     filter: invert(100%) sepia(15%) saturate(305%) hue-rotate(190deg) brightness(112%) contrast(84%);
+  }
+  #filter-popover {
+    border: 1px solid rgba(255,255,255,0.12);
   }
 }
 
