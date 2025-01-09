@@ -68,7 +68,7 @@ module.exports = function () {
     {
       slug: "signal-symbols",
       title: "Signal Symbols",
-      description: "A custom icon set for Signal across all platforms",
+      description: "",
       date: "2023–ongoing",
       tags: [ "Visual design", "Icon design" ],
       class: "span-five-sixths expand",
@@ -157,7 +157,7 @@ module.exports = function () {
     {
       slug: "fb-lite",
       title: "Facebook Lite",
-      description: "Updated News Feed for low-end Android devices",
+      description: "",
       date: "2017",
       tags: [ "Product design", "Design system" ],
       class: "span-five-sixths expand",
