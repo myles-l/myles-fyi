@@ -6,47 +6,39 @@ module.exports = function () {
       description: "",
       date: "2024",
       tags: [ "Photography" ],
-      class: "wide",
+      class: "span-five-sixths expand",
       media: [
         {
           file: "tv.jpg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         },
         {
           file: "240715030898030011.jpeg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         },
         {
           file: "231214019320020014.jpeg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         },
         {
           file: "231214019320020008.jpeg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         },
         {
           file: "231214019320010038.jpeg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         },
         {
           file: "231214019320010029.jpeg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         },
         {
           file: "231214019320010017.jpeg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         },
         {
           file: "231214019320010012.jpeg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         }
       ]
     },
@@ -56,12 +48,11 @@ module.exports = function () {
       description: "",
       date: "2024",
       tags: [ "Visual design", "Typography" ],
-      class: "wide",
+      class: "span-two-thirds expand",
       media: [
         {
           file: "sticker.jpg",
-          alt: "alt text",
-          class: ""
+          alt: "A photo of a sticker on a blue wall. The sticker has a black background and says 'Use Signal' next to the Signal logo."
         }
       ]
     },
@@ -71,7 +62,7 @@ module.exports = function () {
       description: "",
       date: "2023–ongoing",
       tags: [ "Visual design", "Icon design" ],
-      class: "span-five-sixths expand",
+      class: "span-five-sixths align-right expand",
       media: [
         {
           file: "symbols-hero.svg",
@@ -83,14 +74,14 @@ module.exports = function () {
     {
       slug: "pond-study",
       title: "Pond Study",
+      description: "Oil on canvas",
       date: "2023",
       tags: [ "Painting" ],
       class: "span-half expand-five-sixths",
       media: [
         {
           file: "IMG_5090.jpg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         }
       ]
     },
@@ -104,18 +95,15 @@ module.exports = function () {
       media: [
         {
           file: "DSCF0261.jpg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         },
         {
           file: "DSCF0253.jpg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         },
         {
           file: "DSCF0257.jpg",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         }
       ]
     },
@@ -129,8 +117,7 @@ module.exports = function () {
       media: [
         {
           file: "painting-not-found.jpg",
-          alt: "Acrylic painting on white canvas of the Windows 95 icon that was displayed when an image was not found",
-          class: ""
+          alt: "Acrylic painting on white canvas of the Windows 95 icon that was displayed when an image was not found"
         }
       ]
     },
@@ -144,13 +131,11 @@ module.exports = function () {
       media: [
         {
           file: "Hero - iPhone.png",
-          alt: "Signal for iPhone",
-          class: ""
+          alt: "Mock up of the Signal app for iPhone"
         },
         {
           file: "Hero - Android.png",
-          alt: "Signal for Android",
-          class: ""
+          alt: "Mock up of the Signal app for Android"
         }
       ]
     },
@@ -160,67 +145,57 @@ module.exports = function () {
       description: "",
       date: "2017",
       tags: [ "Product design", "Design system" ],
-      class: "span-five-sixths expand",
+      class: "span-two-thirds align-right expand",
       media: [
         {
           file: "fb-lite-cover.png",
-          alt: "alt text",
-          class: ""
+          alt: "alt text"
         }
       ]
     },
     {
       slug: "fig-brand",
       title: "FIG Brand",
-      description: "",
       date: "2016",
       tags: [ "Visual design" ],
-      class: "",
+      class: "span-five-sixths expand",
       media: [
         {
           file: "fig-posters-scene.jpg",
-          alt: "tk",
-          class: ""
+          alt: "tk"
         }
       ]
     },
     {
       slug: "fig",
       title: "Facebook Interface Guidelines",
-      description: "",
       date: "2016",
       tags: [ "Product design", "Design system" ],
-      class: "",
+      class: "span-five-sixths expand",
       media: [
         {
           file: "hero.png",
-          alt: "tk",
-          class: ""
+          alt: "tk"
         },
         {
           file: "wilde.png",
-          alt: "tk",
-          class: ""
+          alt: "tk"
         },
         {
           file: "fb4a.png",
-          alt: "tk",
-          class: ""
+          alt: "tk"
         },
         {
           file: "fb4aSpec.png",
-          alt: "tk",
-          class: ""
+          alt: "tk"
         },
         {
           file: "Push.png",
-          alt: "tk",
-          class: ""
+          alt: "tk"
         },
         {
           file: "fb_spatial_map.png",
-          alt: "tk",
-          class: ""
+          alt: "tk"
         }
       ]
     }

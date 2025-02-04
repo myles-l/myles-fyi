@@ -22,7 +22,7 @@ module.exports = function () {
       }
     ],
     copyright: "2025 Myles Larson Design LLC",
-    updated: "8 Jan 2025",
+    updated: "4 Feb 2025",
     nav: [
       "Product design",
       "Visual design",
