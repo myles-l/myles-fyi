@@ -162,7 +162,11 @@ module.exports = function () {
       media: [
         {
           file: "fig-posters-scene.jpg",
-          alt: "tk"
+          alt: "Photo of three posters on a gray concrete wall. The posters have thin geometric typography spelling'FIG' across the posters."
+        },
+        {
+          file: "fig-poster-crop.jpg",
+          alt: "Detail of one of the posters on a concrete wall. Poster shows parts of the geometric typography, with the title 'Facebook Interface Guidelines' under it."
         }
       ]
     },
