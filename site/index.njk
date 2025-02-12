@@ -2,17 +2,17 @@
 layout: base.njk
 ---
 <header id="index-header">
-  <h1 id="index-site-title" class="site-title caption invisible"><a class="quiet" href="/">{{ meta.title }}</a></h1>
+  <h1 id="index-site-title" class="site-title invisible"><a class="quiet" href="/">{{ meta.title }}</a></h1>
   <menu id="nav-filters">
-    {% for filter in meta.nav %}<li id="filter-{{ filter | slugify }}" class="caption filter"><a class="quiet" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>{% endfor %}
+    {% for filter in meta.nav %}<li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>{% endfor %}
   </menu>
 </header>
 
 <div id="filter-menu">
   <button id="filter-menu-button" class="shift invert">Filter</button>
   <menu id="filter-popover">
-    <li id="filter-all" class="caption filter on"><a class="quiet" href="javascript:resetFilters();">All work</a></li>
-    {% for filter in meta.nav %}<li id="filter-{{ filter | slugify }}" class="caption filter"><a class="quiet" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>{% endfor %}
+    <li id="filter-all" class="filter on"><a class="quiet" href="javascript:resetFilters();">All work</a></li>
+    {% for filter in meta.nav %}<li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>{% endfor %}
   </menu>
 </div>
 
@@ -64,11 +64,11 @@ layout: base.njk
         {% endif %}
         <div class="post-info">
           <div class="post-title">
-            <h2 class="caption">{{ post.title }}</h2>
-            {% if post.subtitle %}<p class="caption">{{ post.subtitle }}</p>{% endif %}
-            {% if post.date %}<p class="caption">{{ post.date }}</p>{% endif %}
+            <h2>{{ post.title }}</h2>
+            {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% endif %}
+            {% if post.date %}<p>{{ post.date }}</p>{% endif %}
           </div>
-          {% if post.media.length > 1 %}<p class="caption no-wrap"><span class="series-index">1</span> &sol; {{ post.media.length }}</p>{% endif %}
+          {% if post.media.length > 1 %}<p class="no-wrap"><span class="series-index">1</span> &sol; {{ post.media.length }}</p>{% endif %}
         </div>
         {% if post.media.length > 1 %}
           <script>

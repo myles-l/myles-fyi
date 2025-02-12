@@ -205,7 +205,7 @@ footer {
   list-style-type: none;
   padding: 6px;
   position: absolute;
-  top: var(--body-leading);
+  top: var(--headline-leading);
   right: 0;
   width: 12rem;
   flex-flow: column nowrap;
@@ -263,7 +263,7 @@ footer {
 }
 
 .series {
-  cursor: e-resize;
+  cursor: pointer;
 }
 
 .slide {
