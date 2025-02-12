@@ -20,7 +20,7 @@
   --headline-size: 2.5rem; /* 40 */
   --headline-leading: 3rem; /* 48 */
   --headline-tracking: -0.02em;
-  --headline-paragraph-break: 2.5rem; /* 40 */
+  --headline-paragraph-break: 2rem; /* 36 */
   --headline-paragraph-width: 40rem;
 
   --color-ground: #FFF;
@@ -101,11 +101,12 @@ a {
     text-decoration-color: var(--color-figure);
     text-decoration-thickness: 1.5px;
   }
-  &.quiet,
-  &.quiet:hover,
-  &.quiet:active {
-    text-decoration: none;
-  }
+}
+
+a.quiet,
+a.quiet:hover,
+a.quiet:active {
+  text-decoration: none;
 }
 
 .tooltip-link {
@@ -250,7 +251,7 @@ footer {
     padding: 0;
   }
   & #hide-more-info {
-    margin-top: var(--body-paragraph-break);
+    margin-top: var(--indent);
   }
 }
 
@@ -264,13 +265,6 @@ footer {
 .series {
   cursor: e-resize;
 }
-
-.aspect-4_3 .series {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4/3;
-}
-
 
 .slide {
   display: block;
@@ -430,7 +424,7 @@ img.outline,
 
     --headline-size: calc(1.5rem + (2.5 - 1.5)*(100vw - 30rem)/(80 - 30));
     --headline-leading: calc(1.875rem + (3 - 1.875)*(100vw - 30rem)/(80 - 30));
-    --headline-paragraph-break: calc(1.5rem + (2.5 - 1.5)*(100vw - 30rem)/(80 - 30));
+    --headline-paragraph-break: calc(1.25rem + (2 - 1.25)*(100vw - 30rem)/(80 - 30));
     --headline-paragraph-width: calc(24rem + (40 - 24)*(100vw - 30rem)/(80 - 30));
 
     --margin: calc(0.625rem + (1 - 0.625)*(100vw - 48rem)/(80 - 48));
@@ -525,7 +519,7 @@ img.outline,
   :root {
     --headline-size: 1.5rem;
     --headline-leading: 1.875rem;
-    --headline-paragraph-break: 1.5rem;
+    --headline-paragraph-break: 1.25rem;
     --headline-paragraph-width: 24rem;
   }
   a {
