@@ -18,23 +18,25 @@ layout: base.njk
 
 <main id="index-content">
   <section id="info" class="paragraph">
-    <p>Myles Larson is a designer and visual artist specialized in digital products. He is based in New York and currently working on <a href="https://signal.org">Signal Messenger</a>.<span id="show-more-info" class="caption indent-left no-wrap"><a class="quiet" href="javascript:toggleFilter('info');">More info</a></span></p>
+    <p>Myles Larson is a designer and visual artist specialized in digital products. He is based in New York and currently working on <a href="https://signal.org">Signal Messenger</a>.<span id="show-more-info" class="info-button indent-left no-wrap"><a class="quiet" href="javascript:toggleFilter('info');">More info</a></span></p>
     <div id="more-info" class="paragraph hidden">
       <p>Prior to Signal, Myles was adjunct faculty at <a href="https://artcenter.edu">ArtCenter College of Design</a> teaching Interaction Design, an independent designer with a variety clients, and at Facebook creating their first design system.</p>
-      <p>For all inquiries<br>
-        <a id="mail-link" class="tooltip-link" href="javascript:copyToClipboard('{{ meta.author.email }}');"><span class="tooltip">copy {{ meta.author.email }}</span><span class="text">{{ meta.author.email }}</span></a>
-      </p>
+      <h3>For all inquiries</h3>
+      <ul>
+        <li><a id="mail-link" class="tooltip-link" href="javascript:copyToClipboard('{{ meta.author.email }}');"><span class="tooltip">copy {{ meta.author.email }}</span><span class="text">{{ meta.author.email }}</span></a></li>
+      </ul>
       {% if meta.social %}
-        <p>Elsewhere
-          {% for social in meta.social %}
-            <br><a href="{{ social.url }}">{{ social.name }}</a>
-          {% endfor %}
-        </p>
+      <h3>Elsewhere</h3>
+      <ul>
+        {% for social in meta.social %}<li><a href="{{ social.url }}">{{ social.name }}</a></li>{% endfor %}
+      </ul>
       {% endif %}
-      <p>Site info
-        {% if meta.updated %}<br>Updated {{ meta.updated }}{% endif %}
-      </p>
-      <p id="hide-more-info" class="caption"><a class="quiet" href="javascript:toggleFilter('info');">Less info</a></p>
+      <h3>Site info</h3>
+      <ul>
+        {% if meta.updated %}<li>Updated {{ meta.updated }}</li>{% endif %}
+        {% if meta.source %}<li><a href="{{ meta.source }}">Source</a></li>{% endif %}
+      </ul>
+      <p id="hide-more-info" class="info-button"><a class="quiet" href="javascript:toggleFilter('info');">Less info</a></p>
     </div>
   </section>
 
@@ -63,7 +65,7 @@ layout: base.njk
         <div class="post-info">
           <div class="post-title">
             <h2 class="caption">{{ post.title }}</h2>
-            {% if post.description %}<p class="caption">{{ post.description }}</p>{% endif %}
+            {% if post.subtitle %}<p class="caption">{{ post.subtitle }}</p>{% endif %}
             {% if post.date %}<p class="caption">{{ post.date }}</p>{% endif %}
           </div>
           {% if post.media.length > 1 %}<p class="caption no-wrap"><span class="series-index">1</span> &sol; {{ post.media.length }}</p>{% endif %}

@@ -3,7 +3,6 @@ module.exports = function () {
     {
       slug: "shot-on-film",
       title: "Shot on Film",
-      description: "",
       date: "2024",
       tags: [ "Photography" ],
       class: "span-five-sixths expand",
@@ -45,7 +44,6 @@ module.exports = function () {
     {
       slug: "signal-brand",
       title: "Signal Brand",
-      description: "",
       date: "2024",
       tags: [ "Visual design", "Typography" ],
       class: "span-two-thirds expand",
@@ -59,7 +57,6 @@ module.exports = function () {
     {
       slug: "signal-symbols",
       title: "Signal Symbols",
-      description: "",
       date: "2023–ongoing",
       tags: [ "Visual design", "Icon design" ],
       class: "span-five-sixths align-right expand",
@@ -74,7 +71,7 @@ module.exports = function () {
     {
       slug: "pond-study",
       title: "Pond Study",
-      description: "Oil on canvas",
+      subtitle: "Oil on canvas",
       date: "2023",
       tags: [ "Painting" ],
       class: "span-half expand-five-sixths",
@@ -88,7 +85,6 @@ module.exports = function () {
     {
       slug: "abstraction-studies",
       title: "Abstraction Studies",
-      description: "",
       date: "2023",
       tags: [ "Painting" ],
       class: "span-half expand-five-sixths",
@@ -110,7 +106,7 @@ module.exports = function () {
     {
       slug: "not-found",
       title: "Not Found",
-      description: "Acrylic on canvas",
+      subtitle: "Acrylic on canvas",
       date: "2022",
       tags: [ "Painting" ],
       class: "span-half expand-five-sixths",
@@ -124,7 +120,6 @@ module.exports = function () {
     {
       slug: "signal-redesign",
       title: "Signal Redesign",
-      description: "",
       date: "2018",
       tags: [ "Product design", "Design system" ],
       class: "span-half expand",
@@ -142,7 +137,6 @@ module.exports = function () {
     {
       slug: "fb-lite",
       title: "Facebook Lite",
-      description: "",
       date: "2017",
       tags: [ "Product design", "Design system" ],
       class: "span-two-thirds align-right expand",
@@ -162,7 +156,7 @@ module.exports = function () {
       media: [
         {
           file: "fig-posters-scene.jpg",
-          alt: "Photo of three posters on a gray concrete wall. The posters have thin geometric typography spelling'FIG' across the posters."
+          alt: "Photo of three posters on a gray concrete wall. The posters have thin geometric typography spelling 'FIG' across the posters."
         },
         {
           file: "fig-poster-crop.jpg",

@@ -9,47 +9,20 @@
   font-display: block;
 }
 
-@font-face {
-  font-family: 'Soehne';
-  src: url('/assets/fonts/soehne-buch-kursiv.woff2') format('woff2');
-  font-weight: normal;
-  font-style: italic;
-  font-feature-settings: "ss01";
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'Soehne';
-  src: url('/assets/fonts/soehne-kraftig.woff2') format('woff2');
-  font-weight: bold;
-  font-style: normal;
-  font-feature-settings: "ss01";
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'Soehne';
-  src: url('/assets/fonts/soehne-kraftig-kursiv.woff2') format('woff2');
-  font-weight: bold;
-  font-style: italic;
-  font-feature-settings: "ss01";
-  font-display: block;
-}
-
 :root {
   --typeface: Soehne, Helvetica, sans-serif;
   
-  --caption-size: 0.9375rem; /* 15 */
-  --caption-leading: 1.25rem; /* 20 */
-  --caption-tracking: 0.01em;
-  --caption-paragraph-break: 1rem;
-  
-  --body-size: 2.5rem; /* 40 */
-  --body-leading: 3rem; /* 48 */
-  --body-tracking: -0.02em;
-  --body-paragraph-break: 2.5rem; /* 40 */
-  --body-width: 40rem;
-      
+  --body-size: 0.9375rem; /* 15 */
+  --body-leading: 1.25rem; /* 20 */
+  --body-tracking: 0.01em;
+  --body-paragraph-break: 1rem;
+
+  --headline-size: 2.5rem; /* 40 */
+  --headline-leading: 3rem; /* 48 */
+  --headline-tracking: -0.02em;
+  --headline-paragraph-break: 2.5rem; /* 40 */
+  --headline-paragraph-width: 40rem;
+
   --color-ground: #FFF;
   --color-figure: #1A1A1A;
   --color-figure-secondary: #999;
@@ -62,7 +35,7 @@
   --col-gap: 1rem;
   --row-gap: 5rem;
   --text-img-gap: 0.375rem; /* 6 */
-  --text-margin-right: 2rem;
+  --text-margin-right: 1.5rem;
 }
 
 
@@ -81,7 +54,6 @@ body {
   padding: var(--margin);
   padding-top: var(--margin-top);
   font-family: var(--typeface);
-  font-weight: normal;
   color: var(--color-figure);
   background-color: var(--color-ground);
   min-width: 20rem; /* 320px */
@@ -92,58 +64,27 @@ body {
 p,
 li,
 h1,
-h2 {
+h2,
+figcaption {
   font-size: var(--body-size);
   line-height: var(--body-leading);
   letter-spacing: var(--body-tracking);
   font-weight: normal;
 }
 
-h3,
-h4,
-h5,
-h6,
-figcaption,
-.caption {
-  font-size: var(--caption-size);
-  line-height: var(--caption-leading);
-  letter-spacing: var(--caption-tracking);
-  font-weight: normal;
-}
-
-
-/* Spacing -------------------------- */
-
-.paragraph {
-  & p {
-    margin-bottom: var(--body-paragraph-break);
-  }
-  & p.caption {
-    margin-bottom: var(--caption-paragraph-break);
-  }
-  & h1,
-  & h2 {
-    margin-top: calc(var(--body-paragraph-break) * 2);
-    margin-bottom: var(--body-paragraph-break);
-  }
+#info {
+  & p,
+  & li,
   & h3 {
-    margin-top: calc(var(--body-paragraph-break) * 2);
-    margin-bottom: var(--caption-paragraph-break);
+    font-size: var(--headline-size);
+    line-height: var(--headline-leading);
+    letter-spacing: var(--headline-tracking);
+    font-weight: normal;
   }
-  & .grid,
-  & > picture,
-  & > figure {
-    margin: var(--row-gap) 0;
-  }
-  & > *:not(div, picture, figure, img) {
-    max-width: var(--body-width);
-    margin-right: var(--text-margin-right);
-  }
-  & > *:first-child {
-    margin-top: 0;
-  }
-  & > *:last-child {
-    margin-bottom: 0;
+  & .info-button {
+    font-size: var(--body-size);
+    line-height: var(--body-leading);
+    letter-spacing: var(--body-tracking);
   }
 }
 
@@ -191,11 +132,11 @@ header {
 
 main {
   padding: var(--row-gap) 0;
-  min-height: calc(100vh - (var(--margin) + var(--margin-top) + var(--caption-leading) + var(--caption-leading)));
+  min-height: calc(100vh - (var(--margin) + var(--margin-top) + var(--body-leading) + var(--body-leading)));
 }
 
 footer {
-  height: var(--caption-leading);
+  height: var(--body-leading);
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
@@ -203,7 +144,7 @@ footer {
 }
 
 
-/* Index --------------------------- */
+/* Nav ----------------------------- */
 
 #nav-filters {
   list-style: none;
@@ -242,7 +183,7 @@ footer {
   top: 0;
   right: 0;
   width: 16px;
-  height: var(--body-leading);
+  height: var(--headline-leading);
   padding: 0;
   border: none;
   overflow: hidden;
@@ -289,12 +230,32 @@ footer {
   }
 }
 
+
+/* Info --------------------------- */
+
 #info {
+  max-width: var(--headline-paragraph-width);
+  margin-top: calc((var(--row-gap) + var(--body-leading)) * -1);
   margin-bottom: var(--row-gap);
+  padding-right: var(--text-margin-right);
+}
+
+#more-info {
+  padding-top: var(--headline-paragraph-break);
+  & h3 {
+    margin-top: var(--headline-paragraph-break);;
+  }
+  & ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  & #hide-more-info {
+    margin-top: var(--body-paragraph-break);
+  }
 }
 
 
-/* Series ------------------------- */
+/* Work --------------------------- */
 
 .window {
   position: relative;
@@ -348,33 +309,10 @@ footer {
 }
 
 
-/* Info --------------------------- */
-
-#info {
-  margin-top: calc((var(--row-gap) + var(--caption-leading)) * -1);
-  & > p:first-child {
-    margin-bottom: 0;
-  }
-}
-
-#more-info {
-  & p:first-child {
-    margin-top: var(--body-paragraph-break);
-  }
-  & p:nth-last-child(2) {
-    margin-bottom: var(--caption-paragraph-break);
-  }
-}
-
-
 /* OVERRIDES -------------------------------------------------------------------- */
 
 .indent-left {
   margin-left: var(--indent);
-}
-
-.indent-right {
-  margin-right: var(--indent);
 }
 
 .hidden {
@@ -490,10 +428,10 @@ img.outline,
   :root {
     /* min_size + (max_size - min_size) * (100vw - min_breakpoint) / (max_breakpoint - min_breakpoint) */
 
-    --body-size: calc(1.5rem + (2.5 - 1.5)*(100vw - 30rem)/(80 - 30));
-    --body-leading: calc(1.875rem + (3 - 1.875)*(100vw - 30rem)/(80 - 30));
-    --body-paragraph-break: calc(1.5rem + (2.5 - 1.5)*(100vw - 30rem)/(80 - 30));
-    --body-width: calc(24rem + (40 - 24)*(100vw - 30rem)/(80 - 30));
+    --headline-size: calc(1.5rem + (2.5 - 1.5)*(100vw - 30rem)/(80 - 30));
+    --headline-leading: calc(1.875rem + (3 - 1.875)*(100vw - 30rem)/(80 - 30));
+    --headline-paragraph-break: calc(1.5rem + (2.5 - 1.5)*(100vw - 30rem)/(80 - 30));
+    --headline-paragraph-width: calc(24rem + (40 - 24)*(100vw - 30rem)/(80 - 30));
 
     --margin: calc(0.625rem + (1 - 0.625)*(100vw - 48rem)/(80 - 48));
     --margin-top: calc(0.5rem + (0.625 - 0.5)*(100vw - 48rem)/(80 - 48));
@@ -585,10 +523,10 @@ img.outline,
 
 @media screen and (max-width: 30rem) {
   :root {
-    --body-size: 1.5rem;
-    --body-leading: 1.875rem;
-    --body-paragraph-break: 1.5rem;
-    --body-width: 24rem;
+    --headline-size: 1.5rem;
+    --headline-leading: 1.875rem;
+    --headline-paragraph-break: 1.5rem;
+    --headline-paragraph-width: 24rem;
   }
   a {
     text-underline-offset: 0.25rem;
