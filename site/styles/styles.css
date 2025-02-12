@@ -132,7 +132,8 @@ header {
 }
 
 main {
-  padding: var(--row-gap) 0;
+  padding-top: var(--row-gap);
+  padding-bottom: calc(var(--row-gap) * 1.5);
   min-height: calc(100vh - (var(--margin) + var(--margin-top) + var(--body-leading) + var(--body-leading)));
 }
 
@@ -238,7 +239,7 @@ footer {
   max-width: var(--headline-paragraph-width);
   margin-top: calc((var(--row-gap) + var(--body-leading)) * -1);
   margin-bottom: var(--row-gap);
-  padding-right: var(--text-margin-right);
+  margin-right: var(--text-margin-right);
 }
 
 #more-info {
