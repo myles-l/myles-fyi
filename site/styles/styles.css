@@ -190,20 +190,25 @@ footer {
   right: 0;
   width: 16px;
   height: var(--headline-leading);
-  padding: 0;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding: 3px 0;
   border: none;
-  overflow: hidden;
-  color: rgba(0,0,0,0); /* Make the text transparent, still visible to screen-readers */
-  background: transparent url('/assets/menu.svg') no-repeat top 3px right;
-  /* transition: background-position 80ms ease-in-out; */
+  background: none;
   cursor: pointer;
 }
-#filter-menu-button.shift {
-  background-position: center right;
+
+#filter-menu-button.center {
+  align-items: center;
 }
 
-#filter-menu-button.x {
-  background-image: url('/assets/close.svg');
+#filter-menu-button.close #menu-icon {
+  opacity: 0;
+}
+
+#filter-menu-button.close #close-icon {
+  opacity: 1;
 }
 
 #filter-popover {

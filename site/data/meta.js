@@ -22,7 +22,7 @@ module.exports = function () {
       }
     ],
     copyright: "2025 Myles Larson Design LLC",
-    updated: "12 Feb 2025",
+    updated: "13 Feb 2025",
     source: "https://github.com/myles-l/myles-fyi",
     nav: [
       "Product design",

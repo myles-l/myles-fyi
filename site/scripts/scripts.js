@@ -30,7 +30,7 @@ function showFilterMenu() {
   const menuButton = document.querySelector("#filter-menu-button");
   const filterMenu = document.querySelector("#filter-popover");
 
-  menuButton.classList.add("x");
+  menuButton.classList.add("close");
   filterMenu.classList.add("open");
 }
 
@@ -38,7 +38,7 @@ function hideFilterMenu() {
   const menuButton = document.querySelector("#filter-menu-button");
   const filterMenu = document.querySelector("#filter-popover");
 
-  menuButton.classList.remove("x");
+  menuButton.classList.remove("close");
   filterMenu.classList.remove("open");
 }
 
@@ -92,7 +92,7 @@ function applyFilter(tag) {
   }
   info.classList.add("hidden");
   siteTitle.classList.remove("invisible");
-  menuButton.classList.remove("shift");
+  menuButton.classList.remove("center");
   updateSiteTitle(deslug(tag));
   updateURLFilter(tag);
   hideFilterMenu();
@@ -122,7 +122,7 @@ function resetFilters() {
   showMoreInfo(false);
   info.classList.remove("hidden");
   siteTitle.classList.add("invisible");
-  menuButton.classList.add("shift");
+  menuButton.classList.add("center");
   allFilter.classList.add("on");
   removeURLFilter();
   updateSiteTitle();

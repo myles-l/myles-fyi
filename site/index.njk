@@ -9,7 +9,12 @@ layout: base.njk
 </header>
 
 <div id="filter-menu">
-  <button id="filter-menu-button" class="shift invert">Filter</button>
+  <button id="filter-menu-button" class="shift invert">
+    <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="menu-icon" fill-rule="evenodd" clip-rule="evenodd" d="M16 6H0V4.5h16V6ZM0 10h16v1.5H0V10Z" fill="#000" opacity="1" />
+      <path id="close-icon" fill-rule="evenodd" clip-rule="evenodd" d="M6.869 8 1.434 2.565l1.132-1.13L8 6.867l5.434-5.434 1.132 1.131L9.13 8l5.435 5.434-1.132 1.132L8 9.13l-5.434 5.434-1.132-1.13L6.87 8Z" fill="#000" opacity="0" />
+    </svg>
+  </button>
   <menu id="filter-popover">
     <li id="filter-all" class="filter on"><a class="quiet" href="javascript:resetFilters();">All work</a></li>
     {% for filter in meta.nav %}<li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>{% endfor %}
@@ -41,19 +46,19 @@ layout: base.njk
   </section>
 
   <section id="work" class="grid">
-    {%- for post in work %}
+    {% for post in work %}
       <article id="{{ post.slug }}" class="post{% for tag in post.tags %} tag-{{ tag | slugify }}{% endfor %}{% if post.class %} {{ post.class }}{% endif %}">
-        {%- if post.media.length > 1 %}
+        {% if post.media.length > 1 %}
           <div class="window series">
-            {%- for slide in post.media %}
-              {%- set path = "/work/" + post.slug + "/" + slide.file %}
-              {%- set class = "slide slide-" + loop.index %}
-              {%- if slide.class %}
-                {%- set class = class + " " + slide.class %}
-              {%- endif %}
-              {%- if loop.index > 1 %}
-                {%- set class = class + " invisible" %}
-              {%- endif %}
+            {% for slide in post.media %}
+              {% set path = "/work/" + post.slug + "/" + slide.file %}
+              {% set class = "slide slide-" + loop.index %}
+              {% if slide.class %}
+                {% set class = class + " " + slide.class %}
+              {% endif %}
+              {% if loop.index > 1 %}
+                {% set class = class + " invisible" %}
+              {% endif %}
               {% pic path, slide.alt, class %}
             {% endfor %}
           </div>
