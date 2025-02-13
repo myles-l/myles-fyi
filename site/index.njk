@@ -41,17 +41,19 @@ layout: base.njk
   </section>
 
   <section id="work" class="grid">
-    {% for post in work %}
+    {%- for post in work %}
       <article id="{{ post.slug }}" class="post{% for tag in post.tags %} tag-{{ tag | slugify }}{% endfor %}{% if post.class %} {{ post.class }}{% endif %}">
-        {% if post.media.length > 1 %}
+        {%- if post.media.length > 1 %}
           <div class="window series">
-            {% for slide in post.media %}
-              {% set path = "/work/" + post.slug + "/" + slide.file %}
-              {% if loop.index > 1 %}
-                {% set class = "invisible slide slide-" + loop.index + " " + slide.class %}
-              {% else %}
-                {% set class = "slide slide-" + loop.index + " " + slide.class %}
-              {% endif %}
+            {%- for slide in post.media %}
+              {%- set path = "/work/" + post.slug + "/" + slide.file %}
+              {%- set class = "slide slide-" + loop.index %}
+              {%- if slide.class %}
+                {%- set class = class + " " + slide.class %}
+              {%- endif %}
+              {%- if loop.index > 1 %}
+                {%- set class = class + " invisible" %}
+              {%- endif %}
               {% pic path, slide.alt, class %}
             {% endfor %}
           </div>

@@ -1,6 +1,7 @@
 const Image = require("@11ty/eleventy-img");
-const markdownIt = require("markdown-it");
-const markdownItContainer = require("markdown-it-container");
+const htmlmin = require("html-minifier-terser");
+const CleanCSS = require("clean-css");
+const terser = require("terser");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addNunjucksFilter("niceDate", function(arr) {
@@ -86,21 +87,21 @@ module.exports = function(eleventyConfig) {
       classes = ` class="${classes}"`;
     }
     if (caption) {
-      html = `<figure${classes}>\n<picture>\n`;
+      html = `<figure${classes}><picture>`;
     } else {
-      html = `<picture${classes}>\n`;
+      html = `<picture${classes}>`;
     }
     for (let i in images){
       if (i >= (images.length - 1)) {
-        html += `<img src="${images[i].url}" alt="${alt}" role="img" width="${images[i].width}" height="${images[i].height}" />\n`;
+        html += `<img src="${images[i].url}" alt="${alt}" role="img" width="${images[i].width}" height="${images[i].height}" loading="lazy" />`;
       } else {
-        html += `<source srcset="${srcset(images[i])}" media="${media(images[i])}" />\n`;
+        html += `<source srcset="${srcset(images[i])}" media="${media(images[i])}" />`;
       }
     }
     if (caption) {
-      html += `</picture>\n<figcaption>${caption}</figcaption>\n</figure>\n`;
+      html += `</picture><figcaption>${caption}</figcaption></figure>`;
     } else {
-      html += `</picture>\n`;
+      html += `</picture>`;
     }
     return html;
 
@@ -141,40 +142,56 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addShortcode("link", function(url, text) {
 		return `<a class="tooltip-link" href="${url}"><span class="tooltip">${url}</span>${text}</a>`;
 	});
-
-	eleventyConfig.addShortcode("caption", function(text) {
-    return `<p class="caption">${text}</p>`;
-	});
-
-	eleventyConfig.setLibrary("md", markdownIt({
-		html: true,
-		breaks: true,
-    typographer: true,
-	}));
-  eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(markdownItContainer,'grid',{  
-    render: function (tokens, idx) {
-      if (tokens[idx].nesting === 1) {
-        return '<div class="grid">\n';
-      } else {
-        return '</div>\n';
-      }
-    }
-  }));
-
-  eleventyConfig.addWatchTarget("site/work/**/*.md");
-  eleventyConfig.addPassthroughCopy('site/styles/*.css');
-  eleventyConfig.addPassthroughCopy('site/scripts/*.js');
+  
+  eleventyConfig.addTemplateFormats("css");
+  eleventyConfig.addTemplateFormats("js");
   eleventyConfig.addPassthroughCopy('site/assets');
   eleventyConfig.addPassthroughCopy('site/robots.txt');
+
+  eleventyConfig.addExtension("css", {
+		outputFileExtension: "css",
+		compile: async function (content) {
+			let result = new CleanCSS().minify(content);
+			return async () => {
+				return result.styles;
+			};
+		},
+	});
+
+  eleventyConfig.addExtension("js", {
+		outputFileExtension: "js",
+		compile: async function (content) {
+			let result = await terser.minify(content);
+			return async () => {
+				return result.code;
+			};
+		},
+	});
+
+  eleventyConfig.addTransform("htmlmin", function (content) {
+		if ((this.page.outputPath || "").endsWith(".html")) {
+			let minified = htmlmin.minify(content, {
+				useShortDoctype: true,
+				removeComments: true,
+				collapseWhitespace: true,
+        minifyCSS: true,
+        minifyJS: true,
+        removeEmptyAttributes: true,
+			});
+			return minified;
+		}
+		// If not an HTML output, return content as-is
+		return content;
+	});
   
   return {
     templateFormats: [
-			"md",
 			"njk",
-			"html"
+			"html",
+      "css",
+      "js"
 		],
     htmlTemplateEngine: "njk",
-    markdownTemplateEngine: "njk",
     dir: {
       input: "site",
       includes: "layouts",
