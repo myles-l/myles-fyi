@@ -9,10 +9,10 @@ layout: base.njk
 </header>
 
 <div id="filter-menu">
-  <button id="filter-menu-button" class="shift invert">
+  <button id="filter-menu-button" class="center">
     <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path id="menu-icon" fill-rule="evenodd" clip-rule="evenodd" d="M16 6H0V4.5h16V6ZM0 10h16v1.5H0V10Z" fill="#000" opacity="1" />
-      <path id="close-icon" fill-rule="evenodd" clip-rule="evenodd" d="M6.869 8 1.434 2.565l1.132-1.13L8 6.867l5.434-5.434 1.132 1.131L9.13 8l5.435 5.434-1.132 1.132L8 9.13l-5.434 5.434-1.132-1.13L6.87 8Z" fill="#000" opacity="0" />
+      <path id="menu-icon" fill-rule="evenodd" clip-rule="evenodd" d="M16 6H0V4.5h16V6ZM0 10h16v1.5H0V10Z" />
+      <path id="close-icon" fill-rule="evenodd" clip-rule="evenodd" d="M6.869 8 1.434 2.565l1.132-1.13L8 6.867l5.434-5.434 1.132 1.131L9.13 8l5.435 5.434-1.132 1.132L8 9.13l-5.434 5.434-1.132-1.13L6.87 8Z" />
     </svg>
   </button>
   <menu id="filter-popover">
@@ -23,7 +23,7 @@ layout: base.njk
 
 <main id="index-content">
   <section id="info" class="paragraph">
-    <p>Myles Larson is a designer and visual artist specialized in digital products. He is based in New York and currently working on <a href="https://signal.org">Signal Messenger</a>.<span id="show-more-info" class="info-button indent-left no-wrap"><a class="quiet" href="javascript:toggleFilter('info');">More info</a></span></p>
+    <p>Myles Larson is a designer and visual artist specialized in digital products. He is based in New York and currently working on <a href="https://signal.org">Signal Messenger</a>.<span class="indent-right">&#8203;</span><span id="show-more-info" class="info-button"><a class="quiet" href="javascript:toggleFilter('info');">More&nbsp;info</a></span></p>
     <div id="more-info" class="paragraph hidden">
       <p>Prior to Signal, Myles was adjunct faculty at <a href="https://artcenter.edu">ArtCenter College of Design</a> teaching Interaction Design, an independent designer with a variety clients, and at Facebook creating their first design system.</p>
       <h3>For all inquiries</h3>
@@ -75,7 +75,7 @@ layout: base.njk
             {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% endif %}
             {% if post.date %}<p>{{ post.date }}</p>{% endif %}
           </div>
-          {% if post.media.length > 1 %}<p class="no-wrap"><span class="series-index">1</span> &sol; {{ post.media.length }}</p>{% endif %}
+          {% if post.media.length > 1 %}<p class="no-wrap"><span class="series-index">1</span>&thinsp;&sol;&thinsp;{{ post.media.length }}</p>{% endif %}
         </div>
         {% if post.media.length > 1 %}
           <script>

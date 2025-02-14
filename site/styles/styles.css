@@ -203,6 +203,15 @@ footer {
   align-items: center;
 }
 
+#menu-icon {
+  fill: var(--color-figure);
+  opacity: 1;
+}
+#close-icon {
+  fill: var(--color-figure);
+  opacity: 0;
+}
+
 #filter-menu-button.close #menu-icon {
   opacity: 0;
 }
@@ -323,6 +332,10 @@ footer {
 
 .indent-left {
   margin-left: var(--indent);
+}
+
+.indent-right {
+  margin-right: var(--indent);
 }
 
 .hidden {
