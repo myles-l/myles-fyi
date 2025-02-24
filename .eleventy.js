@@ -17,24 +17,15 @@ module.exports = function(eleventyConfig) {
     return year.toString();
   });
 
-  eleventyConfig.addShortcode("pic", async function(file, alt, classes, caption) {
+  eleventyConfig.addShortcode("pic", async function(slug, file, alt, classes) {
     // Process images
-    let path;
-    if (this.page.url && !(this.page.url === "/")) {
-      path = this.page.url;
-    } else {
-      let i = file.lastIndexOf("/");
-      if (i > 0) {
-        path = file.slice(0, i+1);
-        file = file.substr(i);
-      }
-    }
-    let src = "site" + path + file;
+    let path = "work/" + slug + "/";
+    let src = "site/" + path + file;
     let data = await Image(src, {
 			widths: [480, 640, 960, 1280, 1920, 2560],
 			formats: ["auto"],
       urlPath: path,
-      outputDir: "export" + path,
+      outputDir: "export/" + path,
       sharpPngOptions: { 
         compressionLevel: 8, 
         palette: true 
@@ -80,17 +71,12 @@ module.exports = function(eleventyConfig) {
     }
 
     // Assemble the picture with breakpoints
-    let html;
     if (!classes || classes == "") {
       classes = "";
     } else {
       classes = ` class="${classes}"`;
     }
-    if (caption) {
-      html = `<figure${classes}><picture>`;
-    } else {
-      html = `<picture${classes}>`;
-    }
+    let html = `<picture${classes}>`;
     for (let i in images){
       if (i >= (images.length - 1)) {
         html += `<img src="${images[i].url}" alt="${alt}" role="img" width="${images[i].width}" height="${images[i].height}" loading="lazy" />`;
@@ -98,11 +84,7 @@ module.exports = function(eleventyConfig) {
         html += `<source srcset="${srcset(images[i])}" media="${media(images[i])}" />`;
       }
     }
-    if (caption) {
-      html += `</picture><figcaption>${caption}</figcaption></figure>`;
-    } else {
-      html += `</picture>`;
-    }
+    html += `</picture>`;
     return html;
 
     function srcset(image) {

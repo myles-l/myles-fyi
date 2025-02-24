@@ -46,12 +46,12 @@ layout: base.njk
   </section>
 
   <section id="work" class="grid">
-    {% for post in work %}
-      <article id="{{ post.slug }}" class="post{% for tag in post.tags %} tag-{{ tag | slugify }}{% endfor %}{% if post.class %} {{ post.class }}{% endif %}">
-        {% if post.media.length > 1 %}
+    {% for post in collections.work | reverse %}
+      <article id="{{ post.fileSlug }}" class="post{% for tag in post.data.tags %} tag-{{ tag | slugify }}{% endfor %}{% if post.data.class %} {{ post.data.class }}{% endif %}">
+        {% if post.data.media.length > 1 %}
           <div class="window series">
-            {% for slide in post.media %}
-              {% set path = "/work/" + post.slug + "/" + slide.file %}
+            {% for slide in post.data.media %}
+              {% set path = post.fileSlug + "/" + slide.file %}
               {% set class = "slide slide-" + loop.index %}
               {% if slide.class %}
                 {% set class = class + " " + slide.class %}
@@ -59,27 +59,29 @@ layout: base.njk
               {% if loop.index > 1 %}
                 {% set class = class + " invisible" %}
               {% endif %}
-              {% pic path, slide.alt, class %}
+              {% pic post.fileSlug, slide.file, slide.alt, class %}
             {% endfor %}
           </div>
         {% else %}
           <div class="window">
-            {% set path = "/work/" + post.slug + "/" + post.media[0].file %}
-            {% set class = "slide " + post.media[0].class %}
-            {% pic path, post.media[0].alt, class %}
+            {% set class = "slide" %}
+            {% if post.data.media.class %}
+              {% set class = class + " " + post.data.media.class %}
+            {% endif %}
+            {% pic post.fileSlug, post.data.media.file, post.data.media.alt, class %}
           </div>
         {% endif %}
         <div class="post-info">
           <div class="post-title">
-            <h2>{{ post.title }}</h2>
-            {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% endif %}
-            {% if post.date %}<p>{{ post.date }}</p>{% endif %}
+            <h2>{{ post.data.title }}</h2>
+            {% if post.data.subtitle %}<p>{{ post.data.subtitle }}</p>{% endif %}
+            {% if post.data.date %}<p>{{ post.data.date | yearOnly }}</p>{% endif %}
           </div>
-          {% if post.media.length > 1 %}<p class="no-wrap"><span class="series-index">1</span>&thinsp;&sol;&thinsp;{{ post.media.length }}</p>{% endif %}
+          {% if post.data.media.length > 1 %}<p class="no-wrap"><span class="series-index">1</span>&thinsp;&sol;&thinsp;{{ post.data.media.length }}</p>{% endif %}
         </div>
-        {% if post.media.length > 1 %}
+        {% if post.data.media.length > 1 %}
           <script>
-            series("#{{ post.slug }}");
+            series("#{{ post.fileSlug }}");
           </script>
         {% endif %}
       </article>
