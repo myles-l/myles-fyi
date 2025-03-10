@@ -1,0 +1,1 @@
+The source for [myles.fyi](https://myles.fyi), an incomplete archive of visual work with no preference for medium and in no particular order. It's built with [Eleventy](https://www.11ty.dev) and hosted on [Netlify](https://netlify.com). The typeface is [Söhne by Klim Type Foundry](https://klim.co.nz/collections/soehne/).

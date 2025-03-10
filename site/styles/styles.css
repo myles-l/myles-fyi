@@ -102,7 +102,6 @@ a:hover {
   text-decoration-thickness: 1.5px;
 }
 
-
 a.quiet,
 a.quiet:hover,
 a.quiet:active {
@@ -364,7 +363,6 @@ img.outline,
   column-gap: var(--col-gap);
   row-gap: var(--row-gap);
   align-content: start;
-
 }
 
 .grid > * {
