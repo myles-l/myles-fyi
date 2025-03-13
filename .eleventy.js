@@ -168,11 +168,13 @@ module.exports = function(eleventyConfig) {
   
   return {
     templateFormats: [
+      "md",
 			"njk",
 			"html",
       "css",
       "js"
 		],
+    markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     dir: {
       input: "site",
