@@ -24,7 +24,28 @@
     <script src="/scripts/scripts.js"></script>
   </head>
   <body>
+    <header id="index-header">
+      <h1 id="index-site-title" class="caption site-title"><a class="quiet" href="/">{{ meta.title }}</a></h1>
+      <menu id="nav-filters">
+        {% for filter in meta.nav %}<li id="filter-{{ filter | slugify }}" class="caption filter"><a class="quiet" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>{% endfor %}
+      </menu>
+    </header>
+
+    <div id="filter-menu">
+      <button id="filter-menu-button" class="center">
+        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path id="menu-icon" fill-rule="evenodd" clip-rule="evenodd" d="M16 6H0V4.5h16V6ZM0 10h16v1.5H0V10Z" />
+          <path id="close-icon" fill-rule="evenodd" clip-rule="evenodd" d="M6.869 8 1.434 2.565l1.132-1.13L8 6.867l5.434-5.434 1.132 1.131L9.13 8l5.435 5.434-1.132 1.132L8 9.13l-5.434 5.434-1.132-1.13L6.87 8Z" />
+        </svg>
+      </button>
+      <menu id="filter-popover">
+        <li id="filter-all" class="filter on"><a class="quiet" href="javascript:resetFilters();">All work</a></li>
+        {% for filter in meta.nav %}<li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>{% endfor %}
+      </menu>
+    </div>
+
     {{ content | safe }}
+
     <footer>
       <p id="end" class="caption">This is the end</p>
       <p id="copyright" class="caption">&copy; {{ meta.copyright }}</p>

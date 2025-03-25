@@ -28,7 +28,8 @@ module.exports = function () {
       "Product design",
       "Visual design",
       "Painting",
-      "Photography"
+      "Photography",
+      "Notes"
     ]
   }
 }

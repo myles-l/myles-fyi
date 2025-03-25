@@ -1,0 +1,8 @@
+---
+layout: base.njk
+---
+<main class="markdown">
+  <h1>{{ title }}</h1>
+  <p class="caption">{{ date | niceDate }}</p>
+  {{ content | safe }}
+</main>

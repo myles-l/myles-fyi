@@ -1,47 +1,27 @@
 ---
 layout: base.njk
 ---
-<header id="index-header">
-  <h1 id="index-site-title" class="site-title invisible"><a class="quiet" href="/">{{ meta.title }}</a></h1>
-  <menu id="nav-filters">
-    {% for filter in meta.nav %}<li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>{% endfor %}
-  </menu>
-</header>
-
-<div id="filter-menu">
-  <button id="filter-menu-button" class="center">
-    <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path id="menu-icon" fill-rule="evenodd" clip-rule="evenodd" d="M16 6H0V4.5h16V6ZM0 10h16v1.5H0V10Z" />
-      <path id="close-icon" fill-rule="evenodd" clip-rule="evenodd" d="M6.869 8 1.434 2.565l1.132-1.13L8 6.867l5.434-5.434 1.132 1.131L9.13 8l5.435 5.434-1.132 1.132L8 9.13l-5.434 5.434-1.132-1.13L6.87 8Z" />
-    </svg>
-  </button>
-  <menu id="filter-popover">
-    <li id="filter-all" class="filter on"><a class="quiet" href="javascript:resetFilters();">All work</a></li>
-    {% for filter in meta.nav %}<li id="filter-{{ filter | slugify }}" class="filter"><a class="quiet" href="javascript:toggleFilter('{{ filter | slugify }}');">{{ filter }}</a></li>{% endfor %}
-  </menu>
-</div>
-
 <main id="index-content">
   <section id="info" class="paragraph">
-    <p>Myles Larson is a designer and visual artist specialized in digital products. He is based in New York and currently working on <a href="https://signal.org">Signal Messenger</a>.<span class="indent-right">&#8203;</span><span id="show-more-info" class="info-button"><a class="quiet" href="javascript:toggleFilter('info');">More&nbsp;info</a></span></p>
+    <p class="headline">Myles Larson is a designer and visual artist specialized in digital products. He is based in New York and currently working on <a href="https://signal.org">Signal Messenger</a>.<span class="indent-right">&#8203;</span><span id="show-more-info" class="caption info-button"><a class="quiet" href="javascript:toggleFilter('info');">More&nbsp;info</a></span></p>
     <div id="more-info" class="paragraph hidden">
-      <p>Prior to Signal, Myles was adjunct faculty at <a href="https://artcenter.edu">ArtCenter College of Design</a> teaching Interaction Design, an independent designer with a variety clients, and at Facebook creating their first design system.</p>
-      <h3>For all inquiries</h3>
+      <p class="headline">Prior to Signal, Myles was adjunct faculty at <a href="https://artcenter.edu">ArtCenter College of Design</a> teaching Interaction Design, an independent designer with a variety clients, and at Facebook creating their first design system.</p>
+      <h2>For all inquiries</h2>
       <ul>
-        <li><a id="mail-link" class="tooltip-link" href="javascript:copyToClipboard('{{ meta.author.email }}');"><span class="tooltip">copy {{ meta.author.email }}</span><span class="text">{{ meta.author.email }}</span></a></li>
+        <li class="headline"><a id="mail-link" class="tooltip-link" href="javascript:copyToClipboard('{{ meta.author.email }}');"><span class="tooltip">copy {{ meta.author.email }}</span><span class="text">{{ meta.author.email }}</span></a></li>
       </ul>
       {% if meta.social %}
-      <h3>Elsewhere</h3>
+      <h2>Elsewhere</h2>
       <ul>
-        {% for social in meta.social %}<li><a href="{{ social.url }}">{{ social.name }}</a></li>{% endfor %}
+        {% for social in meta.social %}<li class="headline"><a href="{{ social.url }}">{{ social.name }}</a></li>{% endfor %}
       </ul>
       {% endif %}
-      <h3>Site info</h3>
+      <h2>Site info</h2>
       <ul>
-        {% if meta.updated %}<li>Updated {{ meta.updated }}</li>{% endif %}
-        {% if meta.source %}<li><a href="{{ meta.source }}">Source</a></li>{% endif %}
+        {% if meta.updated %}<li class="headline">Updated {{ meta.updated }}</li>{% endif %}
+        {% if meta.source %}<li class="headline"><a href="{{ meta.source }}">Source</a></li>{% endif %}
       </ul>
-      <p id="hide-more-info" class="info-button"><a class="quiet" href="javascript:toggleFilter('info');">Less info</a></p>
+      <p id="hide-more-info" class="caption info-button"><a class="quiet" href="javascript:toggleFilter('info');">Less info</a></p>
     </div>
   </section>
 
@@ -73,17 +53,25 @@ layout: base.njk
         {% endif %}
         <div class="post-info">
           <div class="post-title">
-            <h2>{{ post.data.title }}</h2>
-            {% if post.data.subtitle %}<p>{{ post.data.subtitle }}</p>{% endif %}
-            {% if post.data.date %}<p>{{ post.data.date | yearOnly }}</p>{% endif %}
+            <h2 class="caption">{{ post.data.title }}</h2>
+            {% if post.data.subtitle %}<p class="caption">{{ post.data.subtitle }}</p>{% endif %}
+            {% if post.data.date %}<p class="caption">{{ post.data.date | yearOnly }}</p>{% endif %}
           </div>
-          {% if post.data.media.length > 1 %}<p class="no-wrap"><span class="series-index">1</span>&thinsp;&sol;&thinsp;{{ post.data.media.length }}</p>{% endif %}
+          {% if post.data.media.length > 1 %}<p class="caption no-wrap"><span class="series-index">1</span>&thinsp;&sol;&thinsp;{{ post.data.media.length }}</p>{% endif %}
         </div>
         {% if post.data.media.length > 1 %}
           <script>
             series("#{{ post.fileSlug }}");
           </script>
         {% endif %}
+      </article>
+    {% endfor %}
+  </section>
+
+  <section id="notes" class="grid">
+    {% for post in collections.notes | reverse %}
+      <article class="notes post{% for tag in post.data.tags %} tag-{{ tag | slugify }}{% endfor %}">
+        <p class="headline"><a class="quiet" href="{{ post.url }}">{{ post.data.title }}</a><span class="indent-right">&#8203;</span><span class="caption">{{ post.data.date | niceDate }}</span></p>
       </article>
     {% endfor %}
   </section>
